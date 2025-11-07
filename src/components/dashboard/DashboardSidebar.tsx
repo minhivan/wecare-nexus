@@ -67,6 +67,7 @@ const navigationGroups = [
     label: "Community",
     icon: Users,
     accent: "fire-orange",
+    dataTour: "community",
     items: [
       { name: "Donors", href: "/community/donors", icon: Users },
       { name: "Messages", href: "/community/messages", icon: MessageSquare },
@@ -148,6 +149,7 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
 
   return (
     <aside
+      data-tour="sidebar"
       className={cn(
         "fixed left-0 top-0 z-40 h-screen transition-all duration-200 flex flex-col",
         "bg-gradient-to-b from-[#0C111A] to-[#101722] text-[#E5E7EB]",
@@ -203,6 +205,7 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
+              data-tour="create-campaign"
               className={cn(
                 "w-full bg-emerald hover:bg-emerald/90 text-white shadow-lg transition-all",
                 "hover:shadow-emerald/25",
@@ -255,6 +258,7 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
             onOpenChange={() => toggleGroup(group.id)}
           >
             <CollapsibleTrigger
+              data-tour={(group as any).dataTour}
               className={cn(
                 "flex items-center gap-3 w-full rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-180",
                 "text-[#E5E7EB] hover:bg-white/5",

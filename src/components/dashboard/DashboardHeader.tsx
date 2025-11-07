@@ -12,12 +12,14 @@ import {
   CheckCircle2,
   WifiOff,
   Loader2,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useOnboarding } from "@/hooks/useOnboarding";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -82,6 +84,7 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
   const location = useLocation();
   const [syncStatus, setSyncStatus] = useState<"live" | "syncing" | "offline">("live");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { startTour } = useOnboarding();
 
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const breadcrumbs = [
@@ -120,7 +123,7 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border/50 glass">
+    <header data-tour="header" className="sticky top-0 z-30 border-b border-border/50 glass">
       <div className="mx-auto max-w-[1360px] flex h-[72px] items-center justify-between px-6">
         {/* Left Zone - Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm">
@@ -233,9 +236,21 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
           </Button>
 
           {/* Help */}
-          <Button variant="ghost" size="icon">
-            <HelpCircle className="h-5 w-5" strokeWidth={1.5} />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <HelpCircle className="h-5 w-5" strokeWidth={1.5} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem onClick={startTour}>
+                <Sparkles className="mr-2 h-4 w-4" />
+                Start Guided Tour
+              </DropdownMenuItem>
+              <DropdownMenuItem>Documentation</DropdownMenuItem>
+              <DropdownMenuItem>Contact Support</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {/* User Menu */}
           <DropdownMenu>

@@ -10,6 +10,14 @@ All colors MUST be HSL.
   :root {
     --background: 210 40% 98%;
     --foreground: 220 18% 20%;
+    
+    /* Onboarding soft colors */
+    --onboarding-bg-start: 210 40% 98%;
+    --onboarding-bg-end: 0 0% 100%;
+    --onboarding-accent-start: 270 50% 80%;
+    --onboarding-accent-end: 340 70% 85%;
+    --onboarding-text-primary: 250 30% 12%;
+    --onboarding-text-secondary: 250 10% 42%;
 
     --card: 0 0% 100%;
     --card-foreground: 220 18% 20%;
@@ -76,6 +84,45 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+}
+
+/* Driver.js Custom Styling */
+.wecare-tour-popover {
+  @apply rounded-2xl border-0 shadow-2xl;
+  background: linear-gradient(135deg, hsl(var(--onboarding-bg-start)) 0%, hsl(var(--onboarding-bg-end)) 100%);
+  backdrop-filter: blur(20px);
+}
+
+.driver-popover-title {
+  @apply text-xl font-bold text-[hsl(var(--onboarding-text-primary))];
+}
+
+.driver-popover-description {
+  @apply text-base text-[hsl(var(--onboarding-text-secondary))] leading-relaxed mt-2;
+}
+
+.driver-popover-navigation-btns button {
+  @apply rounded-full px-6 py-2 font-semibold transition-all duration-300;
+}
+
+.driver-popover-next-btn {
+  @apply bg-gradient-to-r from-[hsl(var(--onboarding-accent-start))] to-[hsl(var(--onboarding-accent-end))] text-white hover:shadow-lg hover:scale-105;
+}
+
+.driver-popover-prev-btn {
+  @apply text-[hsl(var(--onboarding-text-secondary))] hover:text-[hsl(var(--onboarding-text-primary))];
+}
+
+.driver-popover-close-btn {
+  @apply text-[hsl(var(--onboarding-text-secondary))] hover:text-[hsl(var(--onboarding-text-primary))] transition-colors;
+}
+
+.driver-active-element {
+  @apply transition-all duration-300;
+}
+
+.driver-popover-progress-text {
+  @apply text-sm text-[hsl(var(--onboarding-text-secondary))] font-medium;
 }
 
 @layer utilities {
