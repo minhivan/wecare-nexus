@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { OnboardingProvider } from "@/components/onboarding/OnboardingProvider";
 import Index from "./pages/Index";
 import Campaigns from "./pages/Campaigns";
+import CreateCampaign from "./pages/CreateCampaign";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/campaigns" element={<Campaigns />} />
+            <Route path="/campaigns/new" element={<CreateCampaign />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
