@@ -31,6 +31,7 @@ import {
   UserCog,
   Link as LinkIcon,
 } from "lucide-react";
+import wecareIcon from "@/assets/wecare-icon.png";
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -50,17 +51,8 @@ import {
 
 const navigationGroups = [
   {
-    id: "overview",
-    label: "Overview",
-    description: "To feel the pulse of everything",
-    icon: LayoutDashboard,
-    accent: "cyan",
-    items: [{ name: "Dashboard", href: "/", icon: LayoutDashboard }],
-  },
-  {
     id: "campaigns",
     label: "Campaigns",
-    description: "To build and manage fundraising projects",
     icon: Heart,
     accent: "emerald",
     items: [
@@ -73,7 +65,6 @@ const navigationGroups = [
   {
     id: "community",
     label: "Community",
-    description: "To connect with supporters",
     icon: Users,
     accent: "fire-orange",
     items: [
@@ -86,7 +77,6 @@ const navigationGroups = [
   {
     id: "livestreams",
     label: "Livestreams",
-    description: "To host interactive fundraising sessions",
     icon: Video,
     accent: "violet",
     items: [
@@ -98,7 +88,6 @@ const navigationGroups = [
   {
     id: "donations",
     label: "Donations",
-    description: "To monitor flow of funds",
     icon: DollarSign,
     accent: "amber",
     items: [
@@ -110,7 +99,6 @@ const navigationGroups = [
   {
     id: "analytics",
     label: "Analytics",
-    description: "To analyze performance",
     icon: BarChart3,
     accent: "secondary",
     items: [
@@ -122,7 +110,6 @@ const navigationGroups = [
   {
     id: "settings",
     label: "Settings",
-    description: "To configure system & profile",
     icon: Settings,
     accent: "muted",
     items: [
@@ -150,7 +137,7 @@ interface DashboardSidebarProps {
 }
 
 export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSidebarProps) => {
-  const [openGroups, setOpenGroups] = useState<string[]>(["overview", "campaigns"]);
+  const [openGroups, setOpenGroups] = useState<string[]>(["campaigns"]);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const toggleGroup = (groupId: string) => {
@@ -178,8 +165,8 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg gradient-primary shadow-md">
-                      <Heart className="h-5 w-5 text-white" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg overflow-hidden shadow-md">
+                      <img src={wecareIcon} alt="WeCare" className="w-full h-full object-cover" />
                     </div>
                     <div className="text-left">
                       <span className="text-sm font-bold bg-gradient-to-r from-violet to-pink bg-clip-text text-transparent block">
@@ -245,6 +232,22 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
 
       {/* Core Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+        {/* Overview - Single Link */}
+        <NavLink
+          to="/"
+          end
+          className={cn(
+            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-180",
+            "text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-cyan/10",
+            collapsed && "justify-center"
+          )}
+          activeClassName="text-[#E5E7EB] font-semibold border-l-4 border-cyan bg-cyan/10"
+        >
+          <LayoutDashboard className="h-5 w-5 flex-shrink-0" strokeWidth={1.5} />
+          {!collapsed && <span>Overview</span>}
+        </NavLink>
+
+        {/* Grouped Navigation */}
         {navigationGroups.map((group) => (
           <Collapsible
             key={group.id}
@@ -261,12 +264,7 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
               <group.icon className="h-5 w-5 flex-shrink-0" strokeWidth={1.5} />
               {!collapsed && (
                 <>
-                  <div className="flex-1 text-left">
-                    <div className="font-semibold">{group.label}</div>
-                    <div className="text-[10px] text-[#9CA3AF] leading-tight">
-                      {group.description}
-                    </div>
-                  </div>
+                  <span className="flex-1 text-left font-semibold">{group.label}</span>
                   <ChevronRight
                     className={cn(
                       "h-4 w-4 transition-transform",
