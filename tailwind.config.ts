@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,6 +64,8 @@ export default {
         cyan: "hsl(var(--cyan))",
         amber: "hsl(var(--amber))",
         "fire-orange": "hsl(var(--fire-orange))",
+        violet: "hsl(var(--violet))",
+        pink: "hsl(var(--pink))",
       },
       borderRadius: {
         lg: "var(--radius)",

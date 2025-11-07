@@ -13,7 +13,7 @@ export const DashboardLayout = ({ children, title, subtitle }: DashboardLayoutPr
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background dark">
+    <div className="min-h-screen bg-gradient-to-br from-background via-purple-50/30 to-cyan-50/30">
       <DashboardSidebar />
       <div className={cn("transition-all duration-200", sidebarCollapsed ? "ml-16" : "ml-64")}>
         <DashboardHeader title={title} subtitle={subtitle} sidebarCollapsed={sidebarCollapsed} />

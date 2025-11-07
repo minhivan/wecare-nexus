@@ -52,13 +52,13 @@ const donations = [
 
 export const RecentDonations = () => {
   return (
-    <div className="glass rounded-xl p-6 animate-slide-up">
+    <div className="glass rounded-2xl p-6 animate-slide-up border border-white/60">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold">Recent Donations</h3>
+          <h3 className="text-lg font-bold">Recent Donations</h3>
           <p className="text-sm text-muted-foreground">Latest contributions from donors</p>
         </div>
-        <button className="text-sm font-medium text-primary hover:underline">View All</button>
+        <button className="text-sm font-semibold text-violet hover:text-pink transition-smooth">View All</button>
       </div>
       <div className="overflow-x-auto">
         <Table>

@@ -49,8 +49,8 @@ const Index = () => {
           <div className="lg:col-span-2">
             <DonationChart />
           </div>
-          <div className="glass rounded-xl p-6 animate-slide-up">
-            <h3 className="text-lg font-semibold mb-4">Quick Stats</h3>
+          <div className="glass rounded-2xl p-6 animate-slide-up border border-white/60">
+            <h3 className="text-lg font-bold mb-4">Quick Stats</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">Campaign Success Rate</span>

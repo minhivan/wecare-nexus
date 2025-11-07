@@ -26,25 +26,25 @@ const bgColorClasses = {
 
 export const KPICard = ({ title, value, change, trend, icon: Icon, color }: KPICardProps) => {
   return (
-    <div className="glass rounded-xl p-6 transition-smooth hover:shadow-md animate-slide-up">
+    <div className="glass rounded-2xl p-6 transition-smooth hover:shadow-xl hover:-translate-y-1 animate-slide-up border border-white/60">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <p className="mt-2 text-3xl font-semibold">{value}</p>
+          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{title}</p>
+          <p className="mt-2 text-3xl font-bold">{value}</p>
           <div className="mt-3 flex items-center gap-1 text-sm">
             {trend === "up" ? (
-              <TrendingUp className="h-4 w-4 text-emerald" strokeWidth={1.5} />
+              <TrendingUp className="h-4 w-4 text-emerald" strokeWidth={2} />
             ) : (
-              <TrendingDown className="h-4 w-4 text-destructive" strokeWidth={1.5} />
+              <TrendingDown className="h-4 w-4 text-destructive" strokeWidth={2} />
             )}
-            <span className={cn(trend === "up" ? "text-emerald" : "text-destructive")}>
+            <span className={cn("font-semibold", trend === "up" ? "text-emerald" : "text-destructive")}>
               {change}
             </span>
             <span className="text-muted-foreground">vs last month</span>
           </div>
         </div>
-        <div className={cn("flex h-12 w-12 items-center justify-center rounded-lg", bgColorClasses[color])}>
-          <Icon className={cn("h-6 w-6", colorClasses[color])} strokeWidth={1.5} />
+        <div className={cn("flex h-14 w-14 items-center justify-center rounded-xl shadow-lg", bgColorClasses[color])}>
+          <Icon className={cn("h-7 w-7", colorClasses[color])} strokeWidth={2} />
         </div>
       </div>
     </div>

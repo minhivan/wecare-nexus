@@ -11,9 +11,9 @@ const data = [
 
 export const DonationChart = () => {
   return (
-    <div className="glass rounded-xl p-6 animate-slide-up">
+    <div className="glass rounded-2xl p-6 animate-slide-up border border-white/60">
       <div className="mb-6">
-        <h3 className="text-lg font-semibold">Donation Trends</h3>
+        <h3 className="text-lg font-bold">Donation Trends</h3>
         <p className="text-sm text-muted-foreground">Monthly donation performance</p>
       </div>
       <ResponsiveContainer width="100%" height={300}>

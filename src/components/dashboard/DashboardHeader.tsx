@@ -10,7 +10,7 @@ interface DashboardHeaderProps {
 
 export const DashboardHeader = ({ title, subtitle, sidebarCollapsed }: DashboardHeaderProps) => {
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-30 border-b border-border/50 glass">
       <div className="flex h-16 items-center justify-between px-6">
         {/* Title Section */}
         <div>
@@ -35,7 +35,7 @@ export const DashboardHeader = ({ title, subtitle, sidebarCollapsed }: Dashboard
             <span>Export</span>
           </Button>
           
-          <Button size="sm" className="flex items-center gap-2 bg-primary hover:bg-primary/90">
+          <Button size="sm" className="flex items-center gap-2 gradient-primary shadow-lg hover:shadow-xl transition-smooth border-0">
             <Plus className="h-4 w-4" strokeWidth={1.5} />
             <span className="hidden md:inline">Add Campaign</span>
           </Button>

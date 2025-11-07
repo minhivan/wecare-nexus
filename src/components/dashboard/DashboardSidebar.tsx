@@ -28,10 +28,10 @@ export const DashboardSidebar = () => {
         <div className="flex h-16 items-center justify-between border-b border-border px-4">
           {!collapsed && (
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Heart className="h-5 w-5 text-primary-foreground" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg gradient-primary shadow-md">
+                <Heart className="h-5 w-5 text-white" />
               </div>
-              <span className="text-lg font-semibold">WeCare</span>
+              <span className="text-lg font-bold bg-gradient-to-r from-violet to-pink bg-clip-text text-transparent">WeCare</span>
             </div>
           )}
           <Button
