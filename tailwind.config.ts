@@ -9,10 +9,13 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1360px",
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +60,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        emerald: "hsl(var(--emerald))",
+        cyan: "hsl(var(--cyan))",
+        amber: "hsl(var(--amber))",
+        "fire-orange": "hsl(var(--fire-orange))",
       },
       borderRadius: {
         lg: "var(--radius)",
