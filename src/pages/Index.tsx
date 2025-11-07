@@ -6,7 +6,7 @@ import { DollarSign, Heart, Users, TrendingUp } from "lucide-react";
 
 const Index = () => {
   return (
-    <DashboardLayout title="Overview" subtitle="Monitor your fundraising performance">
+    <DashboardLayout>
       <div className="space-y-6">
         {/* KPI Cards */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
