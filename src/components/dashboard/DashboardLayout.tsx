@@ -14,8 +14,8 @@ export const DashboardLayout = ({ children, title, subtitle }: DashboardLayoutPr
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-purple-50/30 to-cyan-50/30">
-      <DashboardSidebar />
-      <div className={cn("transition-all duration-200", sidebarCollapsed ? "ml-16" : "ml-64")}>
+      <DashboardSidebar collapsed={sidebarCollapsed} onCollapsedChange={setSidebarCollapsed} />
+      <div className={cn("transition-all duration-200", sidebarCollapsed ? "ml-20" : "ml-[260px]")}>
         <DashboardHeader title={title} subtitle={subtitle} sidebarCollapsed={sidebarCollapsed} />
         <main className="mx-auto max-w-[1360px] p-6">
           {children}
