@@ -69,9 +69,8 @@ const navigationGroups = [
     accent: "fire-orange",
     dataTour: "community",
     items: [
-      { name: "Donors", href: "/community/donors", icon: Users },
+      { name: "Feed", href: "/community", icon: Users },
       { name: "Messages", href: "/community/messages", icon: MessageSquare },
-      { name: "Comments", href: "/community/comments", icon: MessageSquare },
       { name: "Activities", href: "/community/activities", icon: Activity },
     ],
   },
@@ -93,7 +92,7 @@ const navigationGroups = [
     accent: "amber",
     items: [
       { name: "All Donations", href: "/donations", icon: DollarSign },
-      { name: "Payouts", href: "/donations/payouts", icon: DollarSign },
+      { name: "Payouts", href: "/donations/payouts", icon: CreditCard },
       { name: "Recurring", href: "/donations/recurring", icon: Repeat },
     ],
   },

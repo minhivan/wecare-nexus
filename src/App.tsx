@@ -9,6 +9,7 @@ import Campaigns from "./pages/Campaigns";
 import CreateCampaign from "./pages/CreateCampaign";
 import Donations from "./pages/Donations";
 import Payouts from "./pages/Payouts";
+import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
@@ -22,11 +23,12 @@ const App = () => (
       <BrowserRouter>
         <OnboardingProvider>
           <Routes>
-            <Route path="/" element={<Index />} />
+          <Route path="/" element={<Index />} />
           <Route path="/campaigns" element={<Campaigns />} />
           <Route path="/campaigns/new" element={<CreateCampaign />} />
           <Route path="/donations" element={<Donations />} />
           <Route path="/donations/payouts" element={<Payouts />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
