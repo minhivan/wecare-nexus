@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { PayoutsHeader } from "@/components/payouts/PayoutsHeader";
 import { PayoutsFilterBar } from "@/components/payouts/PayoutsFilterBar";
 import { PayoutTransactionStream } from "@/components/payouts/PayoutTransactionStream";
@@ -120,8 +121,8 @@ export default function Payouts() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-[1360px] mx-auto px-6 py-6 space-y-6">
+    <DashboardLayout>
+      <div className="space-y-6">
         <PayoutsHeader 
           view={view}
           onViewChange={setView}
@@ -144,6 +145,6 @@ export default function Payouts() {
         open={isRequestDrawerOpen}
         onOpenChange={setIsRequestDrawerOpen}
       />
-    </div>
+    </DashboardLayout>
   );
 }
