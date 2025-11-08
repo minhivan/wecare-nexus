@@ -108,18 +108,6 @@ const navigationGroups = [
       { name: "Conversion", href: "/analytics/conversion", icon: Target },
     ],
   },
-  {
-    id: "settings",
-    label: "Settings",
-    icon: Settings,
-    accent: "muted",
-    items: [
-      { name: "Profile", href: "/settings/profile", icon: User },
-      { name: "Team", href: "/settings/team", icon: UserCog },
-      { name: "Integrations", href: "/settings/integrations", icon: LinkIcon },
-      { name: "Security", href: "/settings/security", icon: Shield },
-    ],
-  },
 ];
 
 const accentColors: Record<string, string> = {
@@ -301,6 +289,20 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
             )}
           </Collapsible>
         ))}
+
+        {/* Settings - Single Link */}
+        <NavLink
+          to="/settings"
+          className={cn(
+            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-180",
+            "text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-white/5",
+            collapsed && "justify-center"
+          )}
+          activeClassName="text-[#E5E7EB] font-semibold border-l-4 border-muted-foreground bg-muted/30"
+        >
+          <Settings className="h-5 w-5 flex-shrink-0" strokeWidth={1.5} />
+          {!collapsed && <span>Settings</span>}
+        </NavLink>
       </nav>
 
       {/* Bottom Utility Zone */}
