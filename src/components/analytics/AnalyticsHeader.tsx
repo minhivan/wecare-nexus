@@ -22,25 +22,24 @@ export const AnalyticsHeader = ({
   };
 
   return (
-    <div className="border-b border-border bg-background px-6 py-4 sticky top-0 z-10">
-      <div className="flex items-center justify-between">
+    <div className="border-b border-border bg-background px-6 h-16 sticky top-0 z-10 flex items-center">
+      <div className="flex items-center justify-between w-full max-w-[1360px] mx-auto">
         <div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
+          <div className="flex items-center gap-2 text-[13px] text-muted-foreground tracking-tight">
             <span>Analytics</span>
-            <ChevronRight className="h-3.5 w-3.5" />
+            <ChevronRight className="h-3.5 w-3.5 stroke-[1.5px]" />
             <span className="text-foreground font-medium">
               {tabNames[activeTab as keyof typeof tabNames]}
             </span>
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Analytics</h1>
         </div>
         
         <div className="flex items-center gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm" className="h-9">
-                <Calendar className="mr-2 h-4 w-4" />
-                <span className="text-sm">
+              <Button variant="outline" size="sm" className="h-9 text-[15px] tracking-tight">
+                <Calendar className="mr-2 h-4 w-4 stroke-[1.5px]" />
+                <span>
                   {format(dateRange.from, "MMM d")} - {format(dateRange.to, "MMM d, yyyy")}
                 </span>
               </Button>
@@ -50,7 +49,7 @@ export const AnalyticsHeader = ({
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="w-full justify-start text-sm"
+                  className="w-full justify-start text-[15px] tracking-tight"
                   onClick={() => {
                     const end = new Date();
                     const start = new Date();
@@ -63,7 +62,7 @@ export const AnalyticsHeader = ({
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="w-full justify-start text-sm"
+                  className="w-full justify-start text-[15px] tracking-tight"
                   onClick={() => {
                     const end = new Date();
                     const start = new Date();
@@ -88,11 +87,11 @@ export const AnalyticsHeader = ({
           </Popover>
 
           <Button variant="outline" size="sm" className="h-9">
-            <RefreshCw className="h-4 w-4" />
+            <RefreshCw className="h-4 w-4 stroke-[1.5px]" />
           </Button>
 
-          <Button variant="outline" size="sm" className="h-9">
-            <Download className="mr-2 h-4 w-4" />
+          <Button variant="outline" size="sm" className="h-9 text-[15px] tracking-tight">
+            <Download className="mr-2 h-4 w-4 stroke-[1.5px]" />
             Export CSV
           </Button>
         </div>

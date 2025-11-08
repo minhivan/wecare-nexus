@@ -8,71 +8,119 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 220 18% 20%;
+    /* Light mode - secondary theme */
+    --background: 220 14% 98%;
+    --foreground: 217 33% 17%;
     
-    /* Onboarding soft colors */
-    --onboarding-bg-start: 210 40% 98%;
-    --onboarding-bg-end: 0 0% 100%;
-    --onboarding-accent-start: 270 50% 80%;
-    --onboarding-accent-end: 340 70% 85%;
-    --onboarding-text-primary: 250 30% 12%;
-    --onboarding-text-secondary: 250 10% 42%;
-
     --card: 0 0% 100%;
-    --card-foreground: 220 18% 20%;
+    --card-foreground: 217 33% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 18% 20%;
+    --popover-foreground: 217 33% 17%;
 
-    --primary: 262 83% 58%;
+    --primary: 160 84% 39%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 189 94% 43%;
+    --secondary: 215 28% 17%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 220 13% 45%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 282 87% 65%;
+    --accent: 189 94% 43%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 262 83% 58%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 160 84% 39%;
 
-    --radius: 1rem;
+    --radius: 0.625rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 18% 20%;
-    --sidebar-primary: 262 83% 58%;
+    --sidebar-foreground: 217 33% 17%;
+    --sidebar-primary: 160 84% 39%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 250 100% 97%;
-    --sidebar-accent-foreground: 220 18% 20%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 217 33% 17%;
+    --sidebar-border: 217 19% 27%;
+    --sidebar-ring: 160 84% 39%;
 
-    /* Dashboard specific tokens - Bright futuristic palette */
-    --emerald: 160 84% 45%;
-    --cyan: 189 94% 48%;
-    --amber: 43 96% 60%;
-    --fire-orange: 14 100% 62%;
-    --violet: 262 83% 58%;
-    --pink: 330 81% 60%;
+    /* Design system tokens - Dark-first palette */
+    --surface-primary: 217 33% 10%;
+    --surface-secondary: 217 19% 13%;
+    --text-primary: 210 40% 93%;
+    --text-secondary: 218 11% 65%;
+    --text-muted: 218 11% 46%;
     
-    --glass-bg: 0 0% 100%;
-    --glass-border: 220 13% 91%;
-    --shadow-sm: 0 2px 4px 0 rgb(139 92 246 / 0.08);
-    --shadow-md: 0 8px 16px -4px rgb(139 92 246 / 0.12);
-    --shadow-lg: 0 20px 25px -5px rgb(139 92 246 / 0.15);
+    /* Semantic colors */
+    --emerald: 160 84% 39%;
+    --cyan: 189 94% 43%;
+    --amber: 38 92% 50%;
+    --danger: 0 84% 60%;
     
-    /* Gradient tokens for futuristic feel */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(282 87% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(189 94% 48%), hsl(160 84% 45%));
-    --gradient-accent: linear-gradient(135deg, hsl(330 81% 60%), hsl(14 100% 62%));
+    /* No glassmorphism - flat surfaces only */
+    --hover-overlay: 0 0% 100%;
+    --focus-overlay: 160 84% 39%;
+  }
+
+  .dark {
+    /* Dark mode - primary theme */
+    --background: 222 47% 5%;
+    --foreground: 210 40% 93%;
+    
+    --card: 217 33% 10%;
+    --card-foreground: 210 40% 93%;
+
+    --popover: 217 19% 13%;
+    --popover-foreground: 210 40% 93%;
+
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 19% 13%;
+    --secondary-foreground: 210 40% 93%;
+
+    --muted: 217 33% 10%;
+    --muted-foreground: 218 11% 65%;
+
+    --accent: 189 94% 43%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 160 84% 39%;
+
+    --sidebar-background: 217 33% 10%;
+    --sidebar-foreground: 210 40% 93%;
+    --sidebar-primary: 160 84% 39%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 19% 13%;
+    --sidebar-accent-foreground: 210 40% 93%;
+    --sidebar-border: 217 19% 27%;
+    --sidebar-ring: 160 84% 39%;
+
+    /* Design system tokens - Dark-first palette */
+    --surface-primary: 217 33% 10%;
+    --surface-secondary: 217 19% 13%;
+    --text-primary: 210 40% 93%;
+    --text-secondary: 218 11% 65%;
+    --text-muted: 218 11% 46%;
+    
+    /* Semantic colors */
+    --emerald: 160 84% 39%;
+    --cyan: 189 94% 43%;
+    --amber: 38 92% 50%;
+    --danger: 0 84% 60%;
+    
+    /* No glassmorphism - flat surfaces only */
+    --hover-overlay: 255 255 255;
+    --focus-overlay: 160 84% 39%;
   }
 }
 
@@ -82,7 +130,12 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased tracking-tight;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
   }
 }
 
@@ -126,37 +179,33 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  .glass {
-    background: hsl(var(--glass-bg) / 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(var(--glass-border));
-    box-shadow: 0 8px 32px 0 rgb(139 92 246 / 0.08);
+  /* Flat surface design - no glassmorphism */
+  .surface-flat {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
   }
   
-  .glass-gradient {
-    background: linear-gradient(135deg, hsl(var(--glass-bg) / 0.9), hsl(var(--glass-bg) / 0.6));
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(var(--glass-border));
-  }
-  
+  /* Animation utilities with precise timing */
   .animate-fade-in {
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn 200ms cubic-bezier(0.3, 0, 0.4, 1);
   }
   
   .animate-slide-up {
-    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideUp 200ms cubic-bezier(0.3, 0, 0.4, 1);
   }
 
   .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 200ms cubic-bezier(0.3, 0, 0.4, 1);
   }
   
-  .gradient-primary {
-    background: var(--gradient-primary);
+  /* Typography utilities */
+  .text-tracking-tight {
+    letter-spacing: -0.01em;
   }
   
-  .gradient-secondary {
-    background: var(--gradient-secondary);
+  /* Hover overlay - subtle tone shift */
+  .hover-surface:hover {
+    background: hsl(var(--hover-overlay) / 0.04);
   }
 }
 
@@ -172,7 +221,7 @@ All colors MUST be HSL.
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;

@@ -30,10 +30,10 @@ export const FilterBar = ({
   onComparePeriodChange,
 }: FilterBarProps) => {
   return (
-    <div className="border-b border-border bg-muted/30 px-6 py-4">
-      <div className="flex items-center justify-between gap-4">
+    <div className="border-b border-border bg-secondary/20 px-6 py-4">
+      <div className="flex items-center justify-between gap-4 max-w-[1360px] mx-auto">
         <div className="flex items-center gap-3 flex-1">
-          <Filter className="h-4 w-4 text-muted-foreground" />
+          <Filter className="h-4 w-4 stroke-[1.5px] text-muted-foreground" />
           
           <Select 
             value={filters.campaign || ""} 

@@ -56,14 +56,14 @@ export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) =
   return (
     <div className="space-y-8">
       {/* Traffic & Conversion Over Time */}
-      <Card className="border border-border bg-card p-6">
-        <h3 className="text-base font-semibold mb-4 text-foreground">Traffic & Conversion Over Time</h3>
+      <Card className="border border-border bg-card rounded-[10px] p-6">
+        <h3 className="text-[15px] font-semibold mb-6 text-foreground tracking-tight">Traffic & Conversion Over Time</h3>
         <ResponsiveContainer width="100%" height={320}>
           <ComposedChart data={trafficData}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
-            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-            <YAxis yAxisId="left" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-            <YAxis yAxisId="right" orientation="right" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={11} strokeWidth={1.5} />
+            <YAxis yAxisId="left" stroke="hsl(var(--muted-foreground))" fontSize={11} strokeWidth={1.5} />
+            <YAxis yAxisId="right" orientation="right" stroke="hsl(var(--muted-foreground))" fontSize={11} strokeWidth={1.5} />
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(var(--card))",
@@ -94,14 +94,14 @@ export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) =
       </Card>
 
       {/* Donation Volume Trend */}
-      <Card className="border border-border bg-card p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-foreground">Donation Volume Trend</h3>
+      <Card className="border border-border bg-card rounded-[10px] p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-[15px] font-semibold text-foreground tracking-tight">Donation Volume Trend</h3>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="h-8 text-xs">
+            <Button variant="outline" size="sm" className="h-8 text-[13px] tracking-tight">
               Total Volume
             </Button>
-            <Button variant="ghost" size="sm" className="h-8 text-xs">
+            <Button variant="ghost" size="sm" className="h-8 text-[13px] tracking-tight">
               Unique Donors
             </Button>
           </div>
@@ -109,8 +109,8 @@ export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) =
         <ResponsiveContainer width="100%" height={320}>
           <AreaChart data={volumeData}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
-            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} />
+            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={11} strokeWidth={1.5} />
+            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} strokeWidth={1.5} />
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(var(--card))",
@@ -148,10 +148,10 @@ export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) =
       </Card>
 
       {/* Geo Heatmap */}
-      <Card className="border border-border bg-card p-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Globe className="h-5 w-5 text-muted-foreground" />
-          <h3 className="text-base font-semibold text-foreground">Geo Heatmap</h3>
+      <Card className="border border-border bg-card rounded-[10px] p-6">
+        <div className="flex items-center gap-2 mb-6">
+          <Globe className="h-5 w-5 stroke-[1.5px] text-muted-foreground" />
+          <h3 className="text-[15px] font-semibold text-foreground tracking-tight">Geo Heatmap</h3>
         </div>
         <div className="grid grid-cols-4 gap-3">
           {[
@@ -166,11 +166,11 @@ export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) =
           ].map((region) => (
             <div 
               key={region.country} 
-              className="p-4 border border-border rounded-lg bg-muted/30 hover:border-emerald/50 transition-all cursor-pointer"
+              className="p-4 border border-border rounded-[10px] bg-secondary/10 hover:border-emerald/50 transition-smooth cursor-pointer hover-surface"
             >
-              <p className="text-xs font-medium text-muted-foreground mb-1">{region.country}</p>
-              <p className="text-xl font-bold text-foreground">{region.donations.toLocaleString()}</p>
-              <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
+              <p className="text-[13px] font-medium text-muted-foreground mb-2 tracking-tight uppercase">{region.country}</p>
+              <p className="text-[22px] font-bold text-foreground tracking-tight">{region.donations.toLocaleString()}</p>
+              <div className="mt-3 h-1 bg-secondary/30 rounded-full overflow-hidden">
                 <div 
                   className={`h-full bg-${region.color} rounded-full`}
                   style={{ width: `${(region.donations / 5000) * 100}%` }}
@@ -182,12 +182,12 @@ export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) =
       </Card>
 
       {comparePeriod && (
-        <Card className="border border-amber/20 bg-amber/5 p-6">
+        <Card className="border border-amber/20 bg-amber/5 rounded-[10px] p-6">
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="h-5 w-5 text-amber" />
-            <h3 className="text-base font-semibold text-foreground">Period Comparison Active</h3>
+            <TrendingUp className="h-5 w-5 stroke-[1.5px] text-amber" />
+            <h3 className="text-[15px] font-semibold text-foreground tracking-tight">Period Comparison Active</h3>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-[15px] text-muted-foreground tracking-tight leading-relaxed">
             Comparison view enabled. Charts now show current period vs previous period data with trend indicators.
           </p>
         </Card>
