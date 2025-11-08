@@ -21,7 +21,7 @@ const Analytics = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-[1360px] mx-auto animate-fade-in">
+      <div className="space-y-0 animate-fade-in">
         <AnalyticsHeader
           activeTab={activeTab}
           dateRange={dateRange}
@@ -35,29 +35,29 @@ const Analytics = () => {
           onComparePeriodChange={setComparePeriod}
         />
 
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="border-b border-border bg-transparent h-auto w-full justify-start rounded-none px-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
+          <TabsList className="border-b border-border bg-transparent h-12 w-full justify-start rounded-none px-4">
             <TabsTrigger 
               value="insight" 
-              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium text-[15px] tracking-tight transition-all duration-[120ms] cubic-bezier(0.3, 0, 0.4, 1) data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
+              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium transition-all data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
             >
               Insight
             </TabsTrigger>
             <TabsTrigger 
               value="trend"
-              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium text-[15px] tracking-tight transition-all duration-[120ms] cubic-bezier(0.3, 0, 0.4, 1) data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
+              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium transition-all data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
             >
               Trend
             </TabsTrigger>
             <TabsTrigger 
               value="conversion"
-              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium text-[15px] tracking-tight transition-all duration-[120ms] cubic-bezier(0.3, 0, 0.4, 1) data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
+              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium transition-all data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
             >
               Conversion
             </TabsTrigger>
           </TabsList>
 
-          <div className="px-6 py-12">
+          <div className="p-6">
             <TabsContent value="insight" className="mt-0 space-y-8">
               <InsightTab 
                 dateRange={dateRange} 

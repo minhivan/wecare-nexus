@@ -33,35 +33,35 @@ export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
   return (
     <div className="space-y-8">
       {/* Funnel Overview */}
-      <Card className="border border-border bg-card rounded-[10px] p-6">
-        <h3 className="text-[15px] font-semibold mb-8 text-foreground tracking-tight">Funnel Overview</h3>
-        <div className="space-y-4">
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-6 text-foreground">Funnel Overview</h3>
+        <div className="space-y-3">
           {funnelStages.map((stage, index) => (
             <div key={stage.stage} className="relative">
               <div className="flex items-center gap-4">
-                <div className="w-32 text-[15px] font-medium text-muted-foreground tracking-tight">{stage.stage}</div>
+                <div className="w-28 text-sm font-medium text-muted-foreground">{stage.stage}</div>
                 <div className="flex-1 relative">
                   <div
-                    className="h-14 rounded-[10px] border border-border transition-smooth flex items-center justify-between px-6 hover:border-emerald/50 hover-surface"
+                    className="h-14 rounded border border-border transition-all duration-300 flex items-center justify-between px-5 hover:border-emerald/50"
                     style={{
                       width: `${stage.percentage}%`,
                       backgroundColor: `${stage.color}20`,
-                      minWidth: "200px",
+                      minWidth: "180px",
                     }}
                   >
-                    <span className="font-bold text-[16px] text-foreground tracking-tight">{stage.value.toLocaleString()}</span>
-                    <span className="text-[15px] font-medium text-muted-foreground tracking-tight">{stage.percentage}%</span>
+                    <span className="font-bold text-base text-foreground">{stage.value.toLocaleString()}</span>
+                    <span className="text-sm font-medium text-muted-foreground">{stage.percentage}%</span>
                   </div>
                   {index > 0 && (
-                    <div className="absolute -top-1 left-0 text-[13px] text-emerald font-medium tracking-tight">
+                    <div className="absolute -top-1 left-0 text-xs text-emerald font-medium">
                       +{((funnelStages[index].percentage / funnelStages[index - 1].percentage) * 100 - 100).toFixed(1)}% vs last week
                     </div>
                   )}
                 </div>
               </div>
               {index < funnelStages.length - 1 && (
-                <div className="absolute left-32 top-14 ml-4">
-                  <ArrowRight className="h-4 w-4 stroke-[1.5px] text-border" />
+                <div className="absolute left-28 top-14 ml-4">
+                  <ArrowRight className="h-4 w-4 text-border" />
                 </div>
               )}
             </div>
@@ -70,8 +70,8 @@ export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
       </Card>
 
       {/* Channel Efficiency */}
-      <Card className="border border-border bg-card rounded-[10px] p-6">
-        <h3 className="text-[15px] font-semibold mb-6 text-foreground tracking-tight">Channel Efficiency</h3>
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-4 text-foreground">Channel Efficiency</h3>
         <div className="space-y-4">
           {[
             { channel: "Email", ctr: 4.2, conversion: 2.6, color: "emerald" },
@@ -79,17 +79,17 @@ export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
             { channel: "Livestream", ctr: 5.1, conversion: 3.1, color: "amber" },
             { channel: "Website", ctr: 2.9, conversion: 1.8, color: "primary" },
           ].map((item) => (
-            <div key={item.channel} className="border border-border rounded-[10px] p-4 hover:border-emerald/50 transition-smooth hover-surface">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-medium text-[15px] text-foreground tracking-tight">{item.channel}</span>
-                <div className="flex items-center gap-6 text-[15px]">
+            <div key={item.channel} className="border border-border rounded-lg p-4 hover:border-emerald/50 transition-all">
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-medium text-foreground">{item.channel}</span>
+                <div className="flex items-center gap-4 text-sm">
                   <div>
-                    <span className="text-muted-foreground tracking-tight">CTR: </span>
-                    <span className="font-semibold text-foreground tracking-tight">{item.ctr}%</span>
+                    <span className="text-muted-foreground">CTR: </span>
+                    <span className="font-semibold text-foreground">{item.ctr}%</span>
                   </div>
                   <div>
-                    <span className="text-muted-foreground tracking-tight">Conversion: </span>
-                    <span className="font-semibold text-emerald tracking-tight">{item.conversion}%</span>
+                    <span className="text-muted-foreground">Conversion: </span>
+                    <span className="font-semibold text-emerald">{item.conversion}%</span>
                   </div>
                 </div>
               </div>
@@ -113,15 +113,15 @@ export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
       </Card>
 
       {/* Behavior Table */}
-      <Card className="border border-border bg-card rounded-[10px] p-6">
-        <h3 className="text-[15px] font-semibold mb-6 text-foreground tracking-tight">Top User Paths</h3>
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-4 text-foreground">Top User Paths</h3>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="text-[13px] uppercase font-medium tracking-tight">User Path</TableHead>
-              <TableHead className="text-right text-[13px] uppercase font-medium tracking-tight">Sessions</TableHead>
-              <TableHead className="text-right text-[13px] uppercase font-medium tracking-tight">Avg. Donation</TableHead>
-              <TableHead className="text-right text-[13px] uppercase font-medium tracking-tight">Trend</TableHead>
+              <TableHead>User Path</TableHead>
+              <TableHead className="text-right">Sessions</TableHead>
+              <TableHead className="text-right">Avg. Donation</TableHead>
+              <TableHead className="text-right">Trend</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -132,13 +132,13 @@ export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
               { path: "Search → Landing → Campaign → Donate", sessions: 980, avgDonation: 138, trend: "+5%" },
               { path: "Direct → Campaign → Donate", sessions: 720, avgDonation: 165, trend: "+18%" },
             ].map((row, i) => (
-              <TableRow key={i} className="hover:bg-secondary/10 transition-smooth">
-                <TableCell className="font-medium text-[15px] tracking-tight">{row.path}</TableCell>
-                <TableCell className="text-right text-[15px] tracking-tight">{row.sessions.toLocaleString()}</TableCell>
-                <TableCell className="text-right font-semibold text-[15px] tracking-tight">${row.avgDonation}</TableCell>
+              <TableRow key={i} className="hover:bg-muted/50 transition-colors">
+                <TableCell className="font-medium">{row.path}</TableCell>
+                <TableCell className="text-right">{row.sessions.toLocaleString()}</TableCell>
+                <TableCell className="text-right font-semibold">${row.avgDonation}</TableCell>
                 <TableCell className="text-right">
-                  <span className="inline-flex items-center gap-1 text-emerald text-[13px] font-medium tracking-tight">
-                    <TrendingUp className="h-3 w-3 stroke-[1.5px]" />
+                  <span className="inline-flex items-center gap-1 text-emerald text-sm font-medium">
+                    <TrendingUp className="h-3 w-3" />
                     {row.trend}
                   </span>
                 </TableCell>
@@ -149,16 +149,16 @@ export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
       </Card>
 
       {/* Recommendations */}
-      <Card className="border border-cyan/20 bg-cyan/5 rounded-[10px] p-6">
-        <div className="flex items-start gap-4">
+      <Card className="border border-cyan/20 bg-cyan/5 p-6">
+        <div className="flex items-start gap-3">
           <div className="p-2 rounded-lg bg-cyan/20">
-            <Sparkles className="h-5 w-5 stroke-[1.5px] text-cyan" />
+            <Sparkles className="h-5 w-5 text-cyan" />
           </div>
           <div>
-            <h4 className="font-semibold text-[15px] text-foreground mb-3 flex items-center gap-2 tracking-tight">
+            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
               AI-Driven Recommendations
             </h4>
-            <div className="space-y-2 text-[15px] text-muted-foreground tracking-tight leading-relaxed">
+            <div className="space-y-2 text-sm text-muted-foreground">
               <p>• Users who donate via livestream are <span className="font-semibold text-cyan">2.3x more likely</span> to return — consider increasing event frequency.</p>
               <p>• Email campaigns show the highest conversion rate at <span className="font-semibold text-cyan">2.6%</span> — allocate more budget to this channel.</p>
               <p>• Drop-off rate is highest between Landing and Campaign pages. Consider A/B testing campaign preview cards.</p>

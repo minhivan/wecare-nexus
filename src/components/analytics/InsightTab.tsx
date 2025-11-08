@@ -75,31 +75,31 @@ export const InsightTab = ({ dateRange, filters, comparePeriod }: InsightTabProp
   return (
     <div className="space-y-8">
       {/* Top KPI Bar */}
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-4 gap-4">
         {kpiData.map((kpi) => {
           const Icon = kpi.icon;
           const isPositive = kpi.trend === "up";
           
           return (
-            <Card key={kpi.label} className="border border-border bg-card rounded-[10px] p-6 hover:border-emerald/50 transition-smooth hover-surface">
-              <div className="flex items-start justify-between mb-4">
-                <div className="p-2 rounded-lg bg-secondary/20">
-                  <Icon className="h-4 w-4 stroke-[1.5px] text-muted-foreground" />
+            <Card key={kpi.label} className="border border-border bg-card p-4 hover:border-emerald/50 transition-all duration-200">
+              <div className="flex items-start justify-between mb-3">
+                <div className="p-2 rounded-lg bg-muted">
+                  <Icon className="h-4 w-4 text-muted-foreground" />
                 </div>
-                <div className={`flex items-center gap-1 text-[13px] font-medium tracking-tight ${isPositive ? 'text-emerald' : 'text-destructive'}`}>
-                  {isPositive ? <TrendingUp className="h-3 w-3 stroke-[1.5px]" /> : <TrendingDown className="h-3 w-3 stroke-[1.5px]" />}
+                <div className={`flex items-center gap-1 text-xs font-medium ${isPositive ? 'text-emerald' : 'text-red-500'}`}>
+                  {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
                   {kpi.delta}
                 </div>
               </div>
               <div>
-                <p className="text-[28px] font-bold text-foreground mb-2 tracking-tight leading-none">{kpi.value}</p>
-                <p className="text-[13px] text-muted-foreground tracking-tight">{kpi.label}</p>
+                <p className="text-2xl font-bold text-foreground mb-1">{kpi.value}</p>
+                <p className="text-xs text-muted-foreground">{kpi.label}</p>
               </div>
-              <div className="mt-4 h-8 flex items-end gap-1">
+              <div className="mt-3 h-8 flex items-end gap-0.5">
                 {kpi.sparkline.map((value, i) => (
                   <div 
                     key={i} 
-                    className="flex-1 bg-emerald/20 rounded-sm transition-smooth hover:bg-emerald/30"
+                    className="flex-1 bg-emerald/20 rounded-sm transition-all hover:bg-emerald/40"
                     style={{ height: `${(value / Math.max(...kpi.sparkline)) * 100}%` }}
                   />
                 ))}
@@ -111,13 +111,13 @@ export const InsightTab = ({ dateRange, filters, comparePeriod }: InsightTabProp
 
       {/* Engagement Breakdown */}
       <div className="grid grid-cols-2 gap-6">
-        <Card className="border border-border bg-card rounded-[10px] p-6">
-          <h3 className="text-[15px] font-semibold mb-6 text-foreground tracking-tight">Top 5 Campaigns by Donations</h3>
+        <Card className="border border-border bg-card p-6">
+          <h3 className="text-base font-semibold mb-4 text-foreground">Top 5 Campaigns by Donations</h3>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={engagementData} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
-              <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={11} strokeWidth={1.5} />
-              <YAxis type="category" dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={11} width={100} strokeWidth={1.5} />
+              <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+              <YAxis type="category" dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={11} width={100} />
               <Tooltip 
                 contentStyle={{ 
                   backgroundColor: "hsl(var(--card))", 
@@ -130,8 +130,8 @@ export const InsightTab = ({ dateRange, filters, comparePeriod }: InsightTabProp
           </ResponsiveContainer>
         </Card>
 
-        <Card className="border border-border bg-card rounded-[10px] p-6">
-          <h3 className="text-[15px] font-semibold mb-6 text-foreground tracking-tight">Donation Sources</h3>
+        <Card className="border border-border bg-card p-6">
+          <h3 className="text-base font-semibold mb-4 text-foreground">Donation Sources</h3>
           <ResponsiveContainer width="100%" height={280}>
             <PieChart>
               <Pie
@@ -173,18 +173,18 @@ export const InsightTab = ({ dateRange, filters, comparePeriod }: InsightTabProp
       </div>
 
       {/* Recent Activities */}
-      <Card className="border border-border bg-card rounded-[10px] p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-[15px] font-semibold text-foreground tracking-tight">Recent Activities</h3>
-          <Activity className="h-4 w-4 stroke-[1.5px] text-muted-foreground animate-pulse" />
+      <Card className="border border-border bg-card p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-base font-semibold text-foreground">Recent Activities</h3>
+          <Activity className="h-4 w-4 text-muted-foreground animate-pulse" />
         </div>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="text-[13px] uppercase font-medium tracking-tight">Donor</TableHead>
-              <TableHead className="text-[13px] uppercase font-medium tracking-tight">Campaign</TableHead>
-              <TableHead className="text-right text-[13px] uppercase font-medium tracking-tight">Amount</TableHead>
-              <TableHead className="text-right text-[13px] uppercase font-medium tracking-tight">Time</TableHead>
+              <TableHead>Donor</TableHead>
+              <TableHead>Campaign</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="text-right">Time</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -195,11 +195,11 @@ export const InsightTab = ({ dateRange, filters, comparePeriod }: InsightTabProp
               { donor: "Emma Wilson", campaign: "Emergency Relief", amount: "$75", time: "18 min ago", new: false },
               { donor: "David Brown", campaign: "Hope for Tomorrow", amount: "$320", time: "25 min ago", new: false },
             ].map((activity, i) => (
-              <TableRow key={i} className={`hover:bg-secondary/10 transition-smooth ${activity.new ? 'border-l-2 border-l-emerald' : ''}`}>
-                <TableCell className="font-medium text-[15px] tracking-tight">{activity.donor}</TableCell>
-                <TableCell className="text-muted-foreground text-[15px] tracking-tight">{activity.campaign}</TableCell>
-                <TableCell className="text-right font-semibold text-emerald text-[15px] tracking-tight">{activity.amount}</TableCell>
-                <TableCell className="text-right text-[13px] text-muted-foreground tracking-tight">{activity.time}</TableCell>
+              <TableRow key={i} className={`hover:bg-muted/50 transition-colors ${activity.new ? 'border-l-2 border-l-emerald' : ''}`}>
+                <TableCell className="font-medium">{activity.donor}</TableCell>
+                <TableCell className="text-muted-foreground">{activity.campaign}</TableCell>
+                <TableCell className="text-right font-semibold text-emerald">{activity.amount}</TableCell>
+                <TableCell className="text-right text-sm text-muted-foreground">{activity.time}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -207,14 +207,14 @@ export const InsightTab = ({ dateRange, filters, comparePeriod }: InsightTabProp
       </Card>
 
       {/* Observation Notes */}
-      <Card className="border border-emerald/20 bg-emerald/5 rounded-[10px] p-6">
-        <div className="flex items-start gap-4">
+      <Card className="border border-emerald/20 bg-emerald/5 p-6">
+        <div className="flex items-start gap-3">
           <div className="p-2 rounded-lg bg-emerald/20">
-            <TrendingUp className="h-5 w-5 stroke-[1.5px] text-emerald" />
+            <TrendingUp className="h-5 w-5 text-emerald" />
           </div>
           <div>
-            <h4 className="font-semibold text-[15px] text-foreground mb-2 tracking-tight">Key Insights</h4>
-            <p className="text-[15px] text-muted-foreground leading-relaxed tracking-tight">
+            <h4 className="font-semibold text-foreground mb-1">Key Insights</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Donations rose <span className="font-semibold text-emerald">14% vs last week</span>, mainly from livestream campaigns. 
               The "Hope for Tomorrow" campaign shows exceptional performance with a <span className="font-semibold text-emerald">2.6% conversion rate</span>. 
               Consider increasing marketing spend on email channels which show the highest ROI.
