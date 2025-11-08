@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Campaigns from "./pages/Campaigns";
 import CreateCampaign from "./pages/CreateCampaign";
 import Donations from "./pages/Donations";
+import Payouts from "./pages/Payouts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,9 +22,10 @@ const App = () => (
         <OnboardingProvider>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/campaigns" element={<Campaigns />} />
-            <Route path="/campaigns/new" element={<CreateCampaign />} />
-            <Route path="/donations" element={<Donations />} />
+          <Route path="/campaigns" element={<Campaigns />} />
+          <Route path="/campaigns/new" element={<CreateCampaign />} />
+          <Route path="/donations" element={<Donations />} />
+          <Route path="/donations/payouts" element={<Payouts />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

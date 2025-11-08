@@ -93,7 +93,6 @@ const navigationGroups = [
     accent: "amber",
     items: [
       { name: "All Donations", href: "/donations", icon: DollarSign },
-      { name: "Transactions", href: "/donations/transactions", icon: CreditCard },
       { name: "Payouts", href: "/donations/payouts", icon: DollarSign },
       { name: "Recurring", href: "/donations/recurring", icon: Repeat },
     ],
