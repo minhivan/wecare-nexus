@@ -96,17 +96,6 @@ const navigationGroups = [
       { name: "Recurring", href: "/donations/recurring", icon: Repeat },
     ],
   },
-  {
-    id: "analytics",
-    label: "Analytics",
-    icon: BarChart3,
-    accent: "secondary",
-    items: [
-      { name: "Insights", href: "/analytics/insights", icon: TrendingUp },
-      { name: "Trends", href: "/analytics/trends", icon: BarChart3 },
-      { name: "Conversion", href: "/analytics/conversion", icon: Target },
-    ],
-  },
 ];
 
 const accentColors: Record<string, string> = {
@@ -288,6 +277,20 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
             )}
           </Collapsible>
         ))}
+
+        {/* Analytics - Single Link */}
+        <NavLink
+          to="/analytics"
+          className={cn(
+            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-180",
+            "text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-secondary/10",
+            collapsed && "justify-center"
+          )}
+          activeClassName="text-[#E5E7EB] font-semibold border-l-4 border-secondary bg-secondary/10"
+        >
+          <BarChart3 className="h-5 w-5 flex-shrink-0" strokeWidth={1.5} />
+          {!collapsed && <span>Analytics</span>}
+        </NavLink>
 
         {/* Settings - Single Link */}
         <NavLink
