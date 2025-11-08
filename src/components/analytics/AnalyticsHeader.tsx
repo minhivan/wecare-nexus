@@ -1,84 +1,99 @@
-import { Calendar, Download, Filter } from "lucide-react";
+import { Calendar, RefreshCw, Download, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
 
 interface AnalyticsHeaderProps {
+  activeTab: string;
   dateRange: { from: Date; to: Date };
   onDateRangeChange: (range: { from: Date; to: Date }) => void;
-  selectedCampaign: string | null;
-  onCampaignChange: (campaign: string | null) => void;
 }
 
 export const AnalyticsHeader = ({
+  activeTab,
   dateRange,
   onDateRangeChange,
-  selectedCampaign,
-  onCampaignChange,
 }: AnalyticsHeaderProps) => {
-  return (
-    <div className="space-y-4">
-      <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-            Analytics
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Track impact, measure engagement, and optimize your campaign strategy.
-          </p>
-        </div>
+  const tabNames = {
+    insight: "Insight",
+    trend: "Trend",
+    conversion: "Conversion",
+  };
 
-        <div className="flex items-center gap-3">
-          {/* Date Range Picker */}
+  return (
+    <div className="border-b border-border bg-background px-6 py-4 sticky top-0 z-10">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
+            <span>Analytics</span>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-foreground font-medium">
+              {tabNames[activeTab as keyof typeof tabNames]}
+            </span>
+          </div>
+          <h1 className="text-2xl font-bold text-foreground">Analytics</h1>
+        </div>
+        
+        <div className="flex items-center gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" className="glass gap-2">
-                <Calendar className="h-4 w-4" />
+              <Button variant="outline" size="sm" className="h-9">
+                <Calendar className="mr-2 h-4 w-4" />
                 <span className="text-sm">
-                  {format(dateRange.from, "MMM dd")} - {format(dateRange.to, "MMM dd, yyyy")}
+                  {format(dateRange.from, "MMM d")} - {format(dateRange.to, "MMM d, yyyy")}
                 </span>
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="end">
+              <div className="p-3 border-b border-border space-y-2">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="w-full justify-start text-sm"
+                  onClick={() => {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setDate(end.getDate() - 7);
+                    onDateRangeChange({ from: start, to: end });
+                  }}
+                >
+                  Last 7 days
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="w-full justify-start text-sm"
+                  onClick={() => {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setDate(end.getDate() - 30);
+                    onDateRangeChange({ from: start, to: end });
+                  }}
+                >
+                  Last 30 days
+                </Button>
+              </div>
               <CalendarComponent
-                mode="single"
-                selected={dateRange.from}
-                onSelect={(date) => date && onDateRangeChange({ ...dateRange, from: date })}
-                className="pointer-events-auto"
+                mode="range"
+                selected={{ from: dateRange.from, to: dateRange.to }}
+                onSelect={(range) => {
+                  if (range?.from && range?.to) {
+                    onDateRangeChange({ from: range.from, to: range.to });
+                  }
+                }}
+                numberOfMonths={2}
               />
             </PopoverContent>
           </Popover>
 
-          {/* Campaign Filter */}
-          <Select value={selectedCampaign || "all"} onValueChange={(value) => onCampaignChange(value === "all" ? null : value)}>
-            <SelectTrigger className="w-[200px] glass">
-              <Filter className="h-4 w-4 mr-2" />
-              <SelectValue placeholder="All Campaigns" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Campaigns</SelectItem>
-              <SelectItem value="campaign1">Hope for Tomorrow</SelectItem>
-              <SelectItem value="campaign2">Education First</SelectItem>
-              <SelectItem value="campaign3">Clean Water Initiative</SelectItem>
-            </SelectContent>
-          </Select>
+          <Button variant="outline" size="sm" className="h-9">
+            <RefreshCw className="h-4 w-4" />
+          </Button>
 
-          {/* Export Button */}
-          <Button className="glass gap-2 hover:bg-primary hover:text-primary-foreground transition-all">
-            <Download className="h-4 w-4" />
-            Export Report
+          <Button variant="outline" size="sm" className="h-9">
+            <Download className="mr-2 h-4 w-4" />
+            Export CSV
           </Button>
         </div>
       </div>

@@ -1,11 +1,12 @@
 import { Card } from "@/components/ui/card";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ComposedChart } from "recharts";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Calendar as CalendarIcon } from "lucide-react";
+import { Globe, TrendingUp } from "lucide-react";
 
 interface TrendTabProps {
   dateRange: { from: Date; to: Date };
-  selectedCampaign: string | null;
+  filters: any;
+  comparePeriod: boolean;
 }
 
 const timelineData = [
@@ -29,141 +30,168 @@ const topPerformingDays = [
   { day: "Sunday", value: 88, color: "hsl(var(--cyan))" },
 ];
 
-export const TrendTab = ({ dateRange, selectedCampaign }: TrendTabProps) => {
+export const TrendTab = ({ dateRange, filters, comparePeriod }: TrendTabProps) => {
+  const trafficData = [
+    { date: "Jan 1", visits: 2400, conversion: 2.1 },
+    { date: "Jan 8", visits: 2800, conversion: 2.3 },
+    { date: "Jan 15", visits: 3200, conversion: 2.5 },
+    { date: "Jan 22", visits: 3600, conversion: 2.4 },
+    { date: "Jan 29", visits: 3400, conversion: 2.6 },
+    { date: "Feb 5", visits: 4100, conversion: 2.8 },
+    { date: "Feb 12", visits: 3800, conversion: 2.7 },
+    { date: "Feb 19", visits: 4500, conversion: 3.0 },
+  ];
+
+  const volumeData = [
+    { date: "Jan 1", health: 1200, education: 800, environment: 600 },
+    { date: "Jan 8", health: 1400, education: 900, environment: 700 },
+    { date: "Jan 15", health: 1300, education: 1100, environment: 650 },
+    { date: "Jan 22", health: 1600, education: 1200, environment: 800 },
+    { date: "Jan 29", health: 1500, education: 1000, environment: 750 },
+    { date: "Feb 5", health: 1800, education: 1300, environment: 900 },
+    { date: "Feb 12", health: 1700, education: 1150, environment: 850 },
+    { date: "Feb 19", health: 2100, education: 1400, environment: 1000 },
+  ];
+
   return (
-    <div className="space-y-6">
-      {/* Timeline Chart */}
-      <Card className="glass p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-foreground">Performance Timeline</h3>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="glass">
-              Daily
-            </Button>
-            <Button variant="outline" size="sm" className="glass">
-              Weekly
-            </Button>
-            <Button variant="outline" size="sm" className="glass bg-primary text-primary-foreground">
-              Monthly
-            </Button>
-          </div>
-        </div>
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={timelineData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
-            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
-            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+    <div className="space-y-8">
+      {/* Traffic & Conversion Over Time */}
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-4 text-foreground">Traffic & Conversion Over Time</h3>
+        <ResponsiveContainer width="100%" height={320}>
+          <ComposedChart data={trafficData}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
+            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+            <YAxis yAxisId="left" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+            <YAxis yAxisId="right" orientation="right" stroke="hsl(var(--muted-foreground))" fontSize={11} />
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(var(--card))",
                 border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
+                borderRadius: "6px",
               }}
             />
             <Legend />
-            <Line 
+            <Area 
+              yAxisId="left"
               type="monotone" 
-              dataKey="donations" 
+              dataKey="visits" 
+              fill="hsl(var(--cyan))" 
+              fillOpacity={0.2}
+              stroke="hsl(var(--cyan))" 
+              strokeWidth={1.5}
+            />
+            <Line 
+              yAxisId="right"
+              type="monotone" 
+              dataKey="conversion" 
               stroke="hsl(var(--emerald))" 
               strokeWidth={2}
-              dot={{ fill: "hsl(var(--emerald))", r: 4 }}
-              activeDot={{ r: 6 }}
+              dot={{ fill: "hsl(var(--emerald))", r: 3 }}
             />
-            <Line 
-              type="monotone" 
-              dataKey="engagement" 
-              stroke="hsl(var(--cyan))" 
-              strokeWidth={2}
-              dot={{ fill: "hsl(var(--cyan))", r: 4 }}
-              activeDot={{ r: 6 }}
-            />
-          </LineChart>
+          </ComposedChart>
         </ResponsiveContainer>
       </Card>
 
-      {/* Trend Breakdown Panels */}
-      <div className="grid grid-cols-2 gap-6">
-        <Card className="glass p-6">
-          <h3 className="text-lg font-semibold mb-4 text-foreground flex items-center gap-2">
-            <CalendarIcon className="h-5 w-5 text-primary" />
-            Top Performing Days
-          </h3>
-          <div className="space-y-3">
-            {topPerformingDays.map((day) => (
-              <div key={day.day} className="flex items-center justify-between">
-                <span className="text-sm font-medium text-muted-foreground">{day.day}</span>
-                <div className="flex items-center gap-3 flex-1 ml-4">
-                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full transition-all duration-500"
-                      style={{ width: `${day.value}%`, backgroundColor: day.color }}
-                    />
-                  </div>
-                  <span className="text-sm font-semibold min-w-[3ch] text-right">{day.value}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        <Card className="glass p-6">
-          <h3 className="text-lg font-semibold mb-4 text-foreground flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-emerald" />
-            Seasonality Insights
-          </h3>
-          <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-emerald/10 border border-emerald/20">
-              <p className="text-sm font-semibold text-emerald mb-1">Peak Season Detected</p>
-              <p className="text-xs text-muted-foreground">
-                Donations increase by 34% during holiday season (Nov-Dec)
-              </p>
-            </div>
-            <div className="p-4 rounded-lg bg-cyan/10 border border-cyan/20">
-              <p className="text-sm font-semibold text-cyan mb-1">Weekend Spike</p>
-              <p className="text-xs text-muted-foreground">
-                Engagement rates are 28% higher on weekends
-              </p>
-            </div>
-            <div className="p-4 rounded-lg bg-amber/10 border border-amber/20">
-              <p className="text-sm font-semibold text-amber mb-1">Evening Optimization</p>
-              <p className="text-xs text-muted-foreground">
-                Best posting time: 6-9 PM for maximum reach
-              </p>
-            </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* Anomaly Detection */}
-      <Card className="glass p-6">
-        <h3 className="text-lg font-semibold mb-4 text-foreground">Anomaly Detection</h3>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="p-4 rounded-lg bg-emerald/5 border border-emerald/20">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-emerald uppercase tracking-wide">Positive Spike</span>
-              <TrendingUp className="h-4 w-4 text-emerald" />
-            </div>
-            <p className="text-2xl font-bold mb-1">+142%</p>
-            <p className="text-xs text-muted-foreground">Feb 19 - Valentine's campaign</p>
-          </div>
-          <div className="p-4 rounded-lg bg-cyan/5 border border-cyan/20">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-cyan uppercase tracking-wide">Above Average</span>
-              <TrendingUp className="h-4 w-4 text-cyan" />
-            </div>
-            <p className="text-2xl font-bold mb-1">+68%</p>
-            <p className="text-xs text-muted-foreground">Feb 5 - Partner collaboration</p>
-          </div>
-          <div className="p-4 rounded-lg bg-muted/5 border border-border">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Steady</span>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
-            </div>
-            <p className="text-2xl font-bold mb-1">Normal</p>
-            <p className="text-xs text-muted-foreground">No anomalies detected</p>
+      {/* Donation Volume Trend */}
+      <Card className="border border-border bg-card p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-base font-semibold text-foreground">Donation Volume Trend</h3>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" className="h-8 text-xs">
+              Total Volume
+            </Button>
+            <Button variant="ghost" size="sm" className="h-8 text-xs">
+              Unique Donors
+            </Button>
           </div>
         </div>
+        <ResponsiveContainer width="100%" height={320}>
+          <AreaChart data={volumeData}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
+            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(var(--card))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+              }}
+            />
+            <Legend />
+            <Area 
+              type="monotone" 
+              dataKey="health" 
+              stackId="1"
+              stroke="hsl(var(--emerald))" 
+              fill="hsl(var(--emerald))"
+              fillOpacity={0.6}
+            />
+            <Area 
+              type="monotone" 
+              dataKey="education" 
+              stackId="1"
+              stroke="hsl(var(--cyan))" 
+              fill="hsl(var(--cyan))"
+              fillOpacity={0.6}
+            />
+            <Area 
+              type="monotone" 
+              dataKey="environment" 
+              stackId="1"
+              stroke="hsl(var(--amber))" 
+              fill="hsl(var(--amber))"
+              fillOpacity={0.6}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </Card>
+
+      {/* Geo Heatmap */}
+      <Card className="border border-border bg-card p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Globe className="h-5 w-5 text-muted-foreground" />
+          <h3 className="text-base font-semibold text-foreground">Geo Heatmap</h3>
+        </div>
+        <div className="grid grid-cols-4 gap-3">
+          {[
+            { country: "United States", donations: 4820, color: "emerald" },
+            { country: "United Kingdom", donations: 3240, color: "cyan" },
+            { country: "Canada", donations: 2180, color: "amber" },
+            { country: "Australia", donations: 1850, color: "primary" },
+            { country: "Germany", donations: 1620, color: "emerald" },
+            { country: "France", donations: 1340, color: "cyan" },
+            { country: "Japan", donations: 980, color: "amber" },
+            { country: "Vietnam", donations: 720, color: "primary" },
+          ].map((region) => (
+            <div 
+              key={region.country} 
+              className="p-4 border border-border rounded-lg bg-muted/30 hover:border-emerald/50 transition-all cursor-pointer"
+            >
+              <p className="text-xs font-medium text-muted-foreground mb-1">{region.country}</p>
+              <p className="text-xl font-bold text-foreground">{region.donations.toLocaleString()}</p>
+              <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
+                <div 
+                  className={`h-full bg-${region.color} rounded-full`}
+                  style={{ width: `${(region.donations / 5000) * 100}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {comparePeriod && (
+        <Card className="border border-amber/20 bg-amber/5 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <TrendingUp className="h-5 w-5 text-amber" />
+            <h3 className="text-base font-semibold text-foreground">Period Comparison Active</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Comparison view enabled. Charts now show current period vs previous period data with trend indicators.
+          </p>
+        </Card>
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { ArrowRight, DollarSign, Eye, MousePointer } from "lucide-react";
+import { ArrowRight, DollarSign, Eye, MousePointer, Sparkles, TrendingUp } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 
 interface ConversionTabProps {
   dateRange: { from: Date; to: Date };
-  selectedCampaign: string | null;
+  filters: any;
 }
 
 const funnelStages = [
@@ -29,34 +29,39 @@ const sourceAttribution = [
   { source: "Direct", campaign: 1850, visitors: 8300, donors: 220, conversion: "2.7%", cost: "$0", roi: "∞" },
 ];
 
-export const ConversionTab = ({ dateRange, selectedCampaign }: ConversionTabProps) => {
+export const ConversionTab = ({ dateRange, filters }: ConversionTabProps) => {
   return (
-    <div className="space-y-6">
-      {/* Funnel Visualization */}
-      <Card className="glass p-8">
-        <h3 className="text-lg font-semibold mb-6 text-foreground">Conversion Funnel</h3>
-        <div className="space-y-4">
+    <div className="space-y-8">
+      {/* Funnel Overview */}
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-6 text-foreground">Funnel Overview</h3>
+        <div className="space-y-3">
           {funnelStages.map((stage, index) => (
             <div key={stage.stage} className="relative">
               <div className="flex items-center gap-4">
-                <div className="w-32 text-sm font-medium text-muted-foreground">{stage.stage}</div>
+                <div className="w-28 text-sm font-medium text-muted-foreground">{stage.stage}</div>
                 <div className="flex-1 relative">
                   <div
-                    className="h-16 rounded-lg transition-all duration-500 flex items-center justify-between px-6"
+                    className="h-14 rounded border border-border transition-all duration-300 flex items-center justify-between px-5 hover:border-emerald/50"
                     style={{
                       width: `${stage.percentage}%`,
-                      backgroundColor: stage.color,
-                      minWidth: "200px",
+                      backgroundColor: `${stage.color}20`,
+                      minWidth: "180px",
                     }}
                   >
-                    <span className="text-white font-bold text-lg">{stage.value.toLocaleString()}</span>
-                    <span className="text-white/90 text-sm font-medium">{stage.percentage}%</span>
+                    <span className="font-bold text-base text-foreground">{stage.value.toLocaleString()}</span>
+                    <span className="text-sm font-medium text-muted-foreground">{stage.percentage}%</span>
                   </div>
+                  {index > 0 && (
+                    <div className="absolute -top-1 left-0 text-xs text-emerald font-medium">
+                      +{((funnelStages[index].percentage / funnelStages[index - 1].percentage) * 100 - 100).toFixed(1)}% vs last week
+                    </div>
+                  )}
                 </div>
               </div>
               {index < funnelStages.length - 1 && (
-                <div className="absolute left-32 top-16 ml-4">
-                  <ArrowRight className="h-5 w-5 text-muted-foreground" />
+                <div className="absolute left-28 top-14 ml-4">
+                  <ArrowRight className="h-4 w-4 text-border" />
                 </div>
               )}
             </div>
@@ -64,100 +69,101 @@ export const ConversionTab = ({ dateRange, selectedCampaign }: ConversionTabProp
         </div>
       </Card>
 
-      {/* Source Attribution */}
-      <Card className="glass p-6">
-        <h3 className="text-lg font-semibold mb-4 text-foreground">Source Attribution</h3>
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
-            <Eye className="h-5 w-5 text-primary mb-2" />
-            <p className="text-2xl font-bold">48.2K</p>
-            <p className="text-xs text-muted-foreground">Total Visitors</p>
-          </div>
-          <div className="p-4 rounded-lg bg-cyan/10 border border-cyan/20">
-            <MousePointer className="h-5 w-5 text-cyan mb-2" />
-            <p className="text-2xl font-bold">12.4K</p>
-            <p className="text-xs text-muted-foreground">Engaged Users</p>
-          </div>
-          <div className="p-4 rounded-lg bg-emerald/10 border border-emerald/20">
-            <DollarSign className="h-5 w-5 text-emerald mb-2" />
-            <p className="text-2xl font-bold">3,150</p>
-            <p className="text-xs text-muted-foreground">Total Donors</p>
-          </div>
-          <div className="p-4 rounded-lg bg-amber/10 border border-amber/20">
-            <ArrowRight className="h-5 w-5 text-amber mb-2" />
-            <p className="text-2xl font-bold">2.5%</p>
-            <p className="text-xs text-muted-foreground">Avg Conversion</p>
-          </div>
+      {/* Channel Efficiency */}
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-4 text-foreground">Channel Efficiency</h3>
+        <div className="space-y-4">
+          {[
+            { channel: "Email", ctr: 4.2, conversion: 2.6, color: "emerald" },
+            { channel: "Social Media", ctr: 3.8, conversion: 2.2, color: "cyan" },
+            { channel: "Livestream", ctr: 5.1, conversion: 3.1, color: "amber" },
+            { channel: "Website", ctr: 2.9, conversion: 1.8, color: "primary" },
+          ].map((item) => (
+            <div key={item.channel} className="border border-border rounded-lg p-4 hover:border-emerald/50 transition-all">
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-medium text-foreground">{item.channel}</span>
+                <div className="flex items-center gap-4 text-sm">
+                  <div>
+                    <span className="text-muted-foreground">CTR: </span>
+                    <span className="font-semibold text-foreground">{item.ctr}%</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Conversion: </span>
+                    <span className="font-semibold text-emerald">{item.conversion}%</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full bg-cyan rounded-full`}
+                    style={{ width: `${(item.ctr / 6) * 100}%` }}
+                  />
+                </div>
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full bg-emerald rounded-full`}
+                    style={{ width: `${(item.conversion / 4) * 100}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+      </Card>
+
+      {/* Behavior Table */}
+      <Card className="border border-border bg-card p-6">
+        <h3 className="text-base font-semibold mb-4 text-foreground">Top User Paths</h3>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Source</TableHead>
-              <TableHead className="text-right">Campaigns</TableHead>
-              <TableHead className="text-right">Visitors</TableHead>
-              <TableHead className="text-right">Donors</TableHead>
-              <TableHead className="text-right">Conversion</TableHead>
-              <TableHead className="text-right">Cost</TableHead>
-              <TableHead className="text-right">ROI</TableHead>
+              <TableHead>User Path</TableHead>
+              <TableHead className="text-right">Sessions</TableHead>
+              <TableHead className="text-right">Avg. Donation</TableHead>
+              <TableHead className="text-right">Trend</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sourceAttribution.map((source) => (
-              <TableRow key={source.source} className="hover:bg-muted/50 transition-colors">
-                <TableCell className="font-medium">{source.source}</TableCell>
-                <TableCell className="text-right">{source.campaign.toLocaleString()}</TableCell>
-                <TableCell className="text-right">{source.visitors.toLocaleString()}</TableCell>
-                <TableCell className="text-right">{source.donors.toLocaleString()}</TableCell>
+            {[
+              { path: "Landing → Campaign → Donate", sessions: 2840, avgDonation: 142, trend: "+12%" },
+              { path: "Social → Campaign → Donate", sessions: 1920, avgDonation: 128, trend: "+8%" },
+              { path: "Email → Campaign → Donate", sessions: 1540, avgDonation: 156, trend: "+15%" },
+              { path: "Search → Landing → Campaign → Donate", sessions: 980, avgDonation: 138, trend: "+5%" },
+              { path: "Direct → Campaign → Donate", sessions: 720, avgDonation: 165, trend: "+18%" },
+            ].map((row, i) => (
+              <TableRow key={i} className="hover:bg-muted/50 transition-colors">
+                <TableCell className="font-medium">{row.path}</TableCell>
+                <TableCell className="text-right">{row.sessions.toLocaleString()}</TableCell>
+                <TableCell className="text-right font-semibold">${row.avgDonation}</TableCell>
                 <TableCell className="text-right">
-                  <Badge variant="outline" className="font-semibold">
-                    {source.conversion}
-                  </Badge>
+                  <span className="inline-flex items-center gap-1 text-emerald text-sm font-medium">
+                    <TrendingUp className="h-3 w-3" />
+                    {row.trend}
+                  </span>
                 </TableCell>
-                <TableCell className="text-right text-muted-foreground">{source.cost}</TableCell>
-                <TableCell className="text-right font-semibold text-emerald">{source.roi}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </Card>
 
-      {/* User Journey Snapshot */}
-      <Card className="glass p-6">
-        <h3 className="text-lg font-semibold mb-4 text-foreground">User Journey Flow</h3>
-        <div className="flex items-center justify-center gap-4 py-8">
-          <div className="text-center">
-            <div className="w-24 h-24 rounded-full bg-primary/20 border-4 border-primary flex items-center justify-center mb-2">
-              <span className="text-2xl font-bold text-primary">38%</span>
-            </div>
-            <p className="text-sm font-medium">Landing Page</p>
+      {/* Recommendations */}
+      <Card className="border border-cyan/20 bg-cyan/5 p-6">
+        <div className="flex items-start gap-3">
+          <div className="p-2 rounded-lg bg-cyan/20">
+            <Sparkles className="h-5 w-5 text-cyan" />
           </div>
-          <ArrowRight className="h-6 w-6 text-muted-foreground" />
-          <div className="text-center">
-            <div className="w-24 h-24 rounded-full bg-accent/20 border-4 border-accent flex items-center justify-center mb-2">
-              <span className="text-2xl font-bold text-accent">26%</span>
+          <div>
+            <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              AI-Driven Recommendations
+            </h4>
+            <div className="space-y-2 text-sm text-muted-foreground">
+              <p>• Users who donate via livestream are <span className="font-semibold text-cyan">2.3x more likely</span> to return — consider increasing event frequency.</p>
+              <p>• Email campaigns show the highest conversion rate at <span className="font-semibold text-cyan">2.6%</span> — allocate more budget to this channel.</p>
+              <p>• Drop-off rate is highest between Landing and Campaign pages. Consider A/B testing campaign preview cards.</p>
             </div>
-            <p className="text-sm font-medium">Campaign Page</p>
           </div>
-          <ArrowRight className="h-6 w-6 text-muted-foreground" />
-          <div className="text-center">
-            <div className="w-24 h-24 rounded-full bg-cyan/20 border-4 border-cyan flex items-center justify-center mb-2">
-              <span className="text-2xl font-bold text-cyan">10%</span>
-            </div>
-            <p className="text-sm font-medium">Donation Form</p>
-          </div>
-          <ArrowRight className="h-6 w-6 text-muted-foreground" />
-          <div className="text-center">
-            <div className="w-24 h-24 rounded-full bg-emerald/20 border-4 border-emerald flex items-center justify-center mb-2">
-              <span className="text-2xl font-bold text-emerald">2.5%</span>
-            </div>
-            <p className="text-sm font-medium">Completed</p>
-          </div>
-        </div>
-        <div className="mt-6 p-4 rounded-lg bg-muted/30 border border-border">
-          <p className="text-sm text-muted-foreground">
-            <span className="font-semibold text-foreground">Key Insight:</span> 62% of users who reach the
-            donation form complete their donation. Focus on improving earlier stages of the funnel.
-          </p>
         </div>
       </Card>
     </div>
