@@ -55,6 +55,16 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 262 83% 58%;
 
+    /* Auth screens color tokens */
+    --primary-text: 229 84% 93%;
+    --secondary-text: 216 13% 65%;
+    --muted-text: 220 9% 46%;
+    --surface: 222 47% 11%;
+    --input-bg: 217 33% 17%;
+    --divider: 215 28% 17%;
+    --hover-state: 0 0% 100%;
+    --emerald: 160 84% 45%;
+
     /* Dashboard specific tokens - Bright futuristic palette */
     --emerald: 160 84% 45%;
     --cyan: 189 94% 48%;

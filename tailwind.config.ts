@@ -66,6 +66,13 @@ export default {
         "fire-orange": "hsl(var(--fire-orange))",
         violet: "hsl(var(--violet))",
         pink: "hsl(var(--pink))",
+        "primary-text": "hsl(var(--primary-text))",
+        "secondary-text": "hsl(var(--secondary-text))",
+        "muted-text": "hsl(var(--muted-text))",
+        "surface": "hsl(var(--surface))",
+        "input-bg": "hsl(var(--input-bg))",
+        "divider": "hsl(var(--divider))",
+        "hover-state": "hsl(var(--hover-state))",
       },
       borderRadius: {
         lg: "var(--radius)",
