@@ -127,9 +127,10 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
     <aside
       data-tour="sidebar"
       className={cn(
-        "fixed left-0 top-0 z-40 h-screen transition-all duration-200 flex flex-col",
+        "fixed left-0 top-0 z-40 h-screen transition-all duration-200 flex-col",
         "bg-gradient-to-b from-[#0C111A] to-[#101722] text-[#E5E7EB]",
-        collapsed ? "w-20" : "w-[260px]"
+        "hidden md:flex",
+        collapsed ? "w-20" : "md:w-20 lg:w-[260px]"
       )}
       style={{
         borderRight: "1px solid rgba(255,255,255,0.06)",

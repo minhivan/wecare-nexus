@@ -124,9 +124,9 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
 
   return (
     <header data-tour="header" className="sticky top-0 z-30 border-b border-border/50 glass">
-      <div className="mx-auto max-w-[1360px] flex h-[72px] items-center justify-between px-6">
+      <div className="mx-auto max-w-[1360px] flex h-[56px] sm:h-[72px] items-center justify-between px-3 sm:px-6">
         {/* Left Zone - Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm">
+        <nav className="hidden lg:flex items-center gap-2 text-sm">
           {breadcrumbs.map((crumb, index) => (
             <div key={crumb.path} className="flex items-center gap-2">
               {index > 0 && (
@@ -147,35 +147,39 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
           ))}
         </nav>
 
+        {/* Mobile Title */}
+        <div className="lg:hidden">
+          <Link to="/" className="text-sm font-bold bg-gradient-to-r from-violet to-pink bg-clip-text text-transparent">
+            WeCare
+          </Link>
+        </div>
+
         {/* Center Zone - Command Palette */}
-        <div className="flex-1 max-w-md mx-8">
-          <div className="relative">
+        <div className="hidden md:flex flex-1 max-w-md mx-4 lg:mx-8">
+          <div className="relative w-full">
             <Search
               className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
               strokeWidth={1.5}
             />
             <Input
-              placeholder="Search or type a command..."
-              className="w-full pl-9 pr-12 bg-muted/30 border-border/50 focus:border-cyan/50 transition-smooth"
+              placeholder="Search..."
+              className="w-full pl-9 pr-3 bg-muted/30 border-border/50 focus:border-cyan/50 transition-smooth"
             />
-            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border/50 bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
-              ⌘K
-            </kbd>
           </div>
         </div>
 
         {/* Right Zone - Status & Utilities */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Sync Status */}
           <Badge
             variant="outline"
             className={cn(
-              "gap-1.5 px-2.5 py-1 text-xs font-medium transition-smooth",
+              "hidden sm:flex gap-1.5 px-2.5 py-1 text-xs font-medium transition-smooth",
               getSyncColor()
             )}
           >
             {getSyncIcon()}
-            <span className="capitalize">{syncStatus}</span>
+            <span className="capitalize hidden lg:inline">{syncStatus}</span>
           </Badge>
 
           {/* Notifications */}
@@ -227,6 +231,7 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="hidden sm:flex"
           >
             {theme === "light" ? (
               <Moon className="h-5 w-5" strokeWidth={1.5} />
@@ -238,7 +243,7 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
           {/* Help */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hidden md:flex">
                 <HelpCircle className="h-5 w-5" strokeWidth={1.5} />
               </Button>
             </DropdownMenuTrigger>
