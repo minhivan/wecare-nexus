@@ -36,7 +36,7 @@ export const LogsDiagnostics = () => {
   };
 
   return (
-    <Card className="p-6 bg-surface border-border">
+    <Card className="p-6 bg-card border-border">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <h2 className="text-lg font-semibold text-foreground">
           Logs & Diagnostics
@@ -52,7 +52,7 @@ export const LogsDiagnostics = () => {
             <RefreshCw className={`w-4 h-4 ${autoRefresh ? "animate-spin" : ""}`} />
             Auto-refresh
           </Button>
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button variant="outline" size="sm" className="gap-2 border-border hover:bg-hover-state">
             <Download className="w-4 h-4" />
             Download
           </Button>
@@ -61,14 +61,14 @@ export const LogsDiagnostics = () => {
 
       <div className="flex flex-col sm:flex-row gap-2 mb-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-text" />
           <Input
             placeholder="Search logs..."
-            className="pl-9 bg-input-bg border-border"
+            className="pl-9 bg-card border-border h-11"
           />
         </div>
         <Select defaultValue="all">
-          <SelectTrigger className="w-full sm:w-[140px] bg-input-bg border-border">
+          <SelectTrigger className="w-full sm:w-[140px] bg-card border-border h-11">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -80,7 +80,7 @@ export const LogsDiagnostics = () => {
           </SelectContent>
         </Select>
         <Select defaultValue="all-services">
-          <SelectTrigger className="w-full sm:w-[140px] bg-input-bg border-border">
+          <SelectTrigger className="w-full sm:w-[140px] bg-card border-border h-11">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -93,21 +93,21 @@ export const LogsDiagnostics = () => {
         </Select>
       </div>
 
-      <div className="border border-border rounded-lg overflow-hidden">
+      <div className="border border-border rounded-lg overflow-hidden bg-card">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="bg-input-bg/50">
-                <TableHead className="font-mono text-xs w-[180px]">Timestamp</TableHead>
-                <TableHead className="text-xs w-[100px]">Level</TableHead>
-                <TableHead className="text-xs w-[140px]">Service</TableHead>
-                <TableHead className="text-xs">Message</TableHead>
+              <TableRow className="bg-muted hover:bg-muted">
+                <TableHead className="font-mono text-xs text-secondary-text w-[180px]">Timestamp</TableHead>
+                <TableHead className="text-xs text-secondary-text w-[100px]">Level</TableHead>
+                <TableHead className="text-xs text-secondary-text w-[140px]">Service</TableHead>
+                <TableHead className="text-xs text-secondary-text">Message</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {logs.map((log, index) => (
-                <TableRow key={index} className="hover:bg-input-bg/30">
-                  <TableCell className="font-mono text-xs text-muted-foreground">
+                <TableRow key={index} className="hover:bg-hover-state transition-smooth">
+                  <TableCell className="font-mono text-xs text-muted-text">
                     {log.timestamp}
                   </TableCell>
                   <TableCell>
@@ -115,7 +115,7 @@ export const LogsDiagnostics = () => {
                       {log.level}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-xs text-muted-foreground">
+                  <TableCell className="text-xs text-secondary-text">
                     {log.service}
                   </TableCell>
                   <TableCell className="text-sm text-foreground">

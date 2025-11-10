@@ -27,27 +27,27 @@ export const FeatureRollout = () => {
   };
 
   return (
-    <Card className="p-6 bg-surface border-border border-warning/20">
+    <Card className="p-6 bg-card border-border border-l-4 border-l-warning">
       <div className="flex items-center gap-2 mb-4">
         <Shield className="w-5 h-5 text-warning" />
         <h2 className="text-lg font-semibold text-foreground">
           Feature Rollout Management
         </h2>
-        <Badge variant="outline" className="text-warning border-warning/30">
+        <Badge variant="outline" className="text-amber bg-warning/10 border-warning/30">
           Admin Only
         </Badge>
       </div>
       
       <div className="space-y-6">
         <div className="space-y-3">
-          <Label className="text-sm text-muted-foreground">
+          <Label className="text-sm text-secondary-text">
             Target Roles
           </Label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {roles.map((role) => (
               <div
                 key={role.id}
-                className="flex items-center space-x-2 p-3 rounded-lg bg-input-bg/50 border border-border hover:border-accent/50 transition-colors cursor-pointer"
+                className="flex items-center space-x-2 p-3 rounded-lg bg-card border border-border hover:bg-hover-state transition-smooth cursor-pointer"
                 onClick={() => toggleRole(role.id)}
               >
                 <Checkbox
@@ -57,7 +57,7 @@ export const FeatureRollout = () => {
                 />
                 <Label
                   htmlFor={role.id}
-                  className="text-sm cursor-pointer flex-1"
+                  className="text-sm cursor-pointer flex-1 text-foreground"
                 >
                   {role.label}
                 </Label>
@@ -68,10 +68,10 @@ export const FeatureRollout = () => {
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <Label className="text-sm text-muted-foreground">
+            <Label className="text-sm text-secondary-text">
               Rollout Percentage
             </Label>
-            <Badge variant="secondary" className="font-mono">
+            <Badge variant="secondary" className="font-mono bg-muted text-foreground">
               {rolloutPercentage[0]}%
             </Badge>
           </div>
@@ -83,13 +83,13 @@ export const FeatureRollout = () => {
             step={5}
             className="w-full"
           />
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-secondary-text">
             Features will be enabled for {rolloutPercentage[0]}% of users in selected roles
           </p>
         </div>
 
         <div className="pt-4 flex justify-end">
-          <Button className="bg-accent text-white hover:bg-accent/90">
+          <Button className="bg-primary text-white hover:bg-primary/90">
             Push Configuration to Live
           </Button>
         </div>

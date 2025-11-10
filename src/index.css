@@ -8,82 +8,84 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    /* Base - Vercel × Linear × Notion Light */
+    --background: 220 20% 98%;
     --foreground: 220 18% 20%;
     
-    /* Onboarding soft colors */
-    --onboarding-bg-start: 210 40% 98%;
-    --onboarding-bg-end: 0 0% 100%;
-    --onboarding-accent-start: 270 50% 80%;
-    --onboarding-accent-end: 340 70% 85%;
-    --onboarding-text-primary: 250 30% 12%;
-    --onboarding-text-secondary: 250 10% 42%;
-
     --card: 0 0% 100%;
     --card-foreground: 220 18% 20%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 220 18% 20%;
 
-    --primary: 262 83% 58%;
+    /* Primary Accent - Blue */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 189 94% 43%;
+    /* Secondary Accent - Green */
+    --secondary: 160 84% 39%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
+    /* Muted tones */
+    --muted: 220 13% 96%;
     --muted-foreground: 220 13% 45%;
 
-    --accent: 282 87% 65%;
+    /* Interactive Accent */
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
+    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
+    /* Borders & Inputs */
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 262 83% 58%;
+    --ring: 217 91% 60%;
 
-    --radius: 1rem;
+    --radius: 0.625rem;
 
+    /* Sidebar tokens */
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 220 18% 20%;
-    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 250 100% 97%;
+    --sidebar-accent: 220 13% 96%;
     --sidebar-accent-foreground: 220 18% 20%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-ring: 217 91% 60%;
 
-    /* Auth screens color tokens */
-    --primary-text: 229 84% 93%;
-    --secondary-text: 216 13% 65%;
+    /* Surface & interaction tokens */
+    --surface: 0 0% 100%;
+    --input-bg: 0 0% 100%;
+    --hover-state: 220 13% 96%;
+    --divider: 220 13% 91%;
+    
+    /* Text hierarchy */
+    --primary-text: 220 18% 20%;
+    --secondary-text: 220 13% 45%;
     --muted-text: 220 9% 46%;
-    --surface: 222 47% 11%;
-    --input-bg: 217 33% 17%;
-    --divider: 215 28% 17%;
-    --hover-state: 0 0% 100%;
-    --emerald: 160 84% 45%;
 
-    /* Dashboard specific tokens - Bright futuristic palette */
-    --emerald: 160 84% 45%;
-    --cyan: 189 94% 48%;
+    /* Semantic colors */
+    --emerald: 160 84% 39%;
+    --cyan: 189 94% 43%;
     --warning: 43 96% 56%;
-    --amber: 43 96% 60%;
+    --amber: 43 96% 56%;
     --fire-orange: 14 100% 62%;
     --violet: 262 83% 58%;
     --pink: 330 81% 60%;
     
+    /* Glass effects (minimal in light mode) */
     --glass-bg: 0 0% 100%;
     --glass-border: 220 13% 91%;
-    --shadow-sm: 0 2px 4px 0 rgb(139 92 246 / 0.08);
-    --shadow-md: 0 8px 16px -4px rgb(139 92 246 / 0.12);
-    --shadow-lg: 0 20px 25px -5px rgb(139 92 246 / 0.15);
     
-    /* Gradient tokens for futuristic feel */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(282 87% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(189 94% 48%), hsl(160 84% 45%));
-    --gradient-accent: linear-gradient(135deg, hsl(330 81% 60%), hsl(14 100% 62%));
+    /* Onboarding soft colors */
+    --onboarding-bg-start: 220 20% 98%;
+    --onboarding-bg-end: 0 0% 100%;
+    --onboarding-accent-start: 217 91% 75%;
+    --onboarding-accent-end: 160 84% 55%;
+    --onboarding-text-primary: 220 18% 20%;
+    --onboarding-text-secondary: 220 13% 45%;
   }
 }
 
@@ -138,15 +140,12 @@ All colors MUST be HSL.
 
 @layer utilities {
   .glass {
-    background: hsl(var(--glass-bg) / 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
+    background: hsl(var(--glass-bg));
     border: 1px solid hsl(var(--glass-border));
-    box-shadow: 0 8px 32px 0 rgb(139 92 246 / 0.08);
   }
   
   .glass-gradient {
-    background: linear-gradient(135deg, hsl(var(--glass-bg) / 0.9), hsl(var(--glass-bg) / 0.6));
-    backdrop-filter: blur(20px) saturate(180%);
+    background: hsl(var(--glass-bg));
     border: 1px solid hsl(var(--glass-border));
   }
   
@@ -159,15 +158,7 @@ All colors MUST be HSL.
   }
 
   .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .gradient-primary {
-    background: var(--gradient-primary);
-  }
-  
-  .gradient-secondary {
-    background: var(--gradient-secondary);
+    transition: all 0.15s ease-out;
   }
 }
 

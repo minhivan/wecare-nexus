@@ -25,12 +25,12 @@ export const ApiSandbox = () => {
   };
 
   return (
-    <Card className="p-6 bg-surface border-border">
+    <Card className="p-6 bg-card border-border">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-foreground">
           API & Integration Sandbox
         </h2>
-        <Button variant="ghost" size="sm" className="gap-2">
+        <Button variant="ghost" size="sm" className="gap-2 text-secondary-text hover:text-foreground hover:bg-hover-state">
           <Maximize2 className="w-4 h-4" />
           Expand
         </Button>
@@ -38,25 +38,25 @@ export const ApiSandbox = () => {
       
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="endpoint" className="text-sm text-muted-foreground">
+          <Label htmlFor="endpoint" className="text-sm text-secondary-text">
             Endpoint
           </Label>
           <Input
             id="endpoint"
             placeholder="/api/campaigns"
             defaultValue="/api/campaigns"
-            className="bg-input-bg border-border font-mono text-sm"
+            className="bg-card border-border font-mono text-sm h-11"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="payload" className="text-sm text-muted-foreground">
+          <Label htmlFor="payload" className="text-sm text-secondary-text">
             Payload (JSON)
           </Label>
           <Textarea
             id="payload"
             placeholder='{ "name": "Test Campaign" }'
-            className="bg-input-bg border-border font-mono text-sm min-h-[120px] resize-none"
+            className="bg-card border-border font-mono text-sm min-h-[120px] resize-none"
             defaultValue={JSON.stringify({ name: "Test Campaign", goal: 10000 }, null, 2)}
           />
         </div>
@@ -64,13 +64,13 @@ export const ApiSandbox = () => {
         <div className="flex items-center gap-4 flex-wrap">
           <div className="flex items-center space-x-2">
             <Checkbox id="staging" />
-            <Label htmlFor="staging" className="text-sm cursor-pointer">
+            <Label htmlFor="staging" className="text-sm cursor-pointer text-foreground">
               Use Staging Credentials
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox id="mock" />
-            <Label htmlFor="mock" className="text-sm cursor-pointer">
+            <Label htmlFor="mock" className="text-sm cursor-pointer text-foreground">
               Mock Response
             </Label>
           </div>
@@ -79,7 +79,7 @@ export const ApiSandbox = () => {
         <Button 
           onClick={runTest} 
           disabled={loading}
-          className="w-full sm:w-auto bg-accent text-white hover:bg-accent/90 gap-2"
+          className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 gap-2"
         >
           <Play className="w-4 h-4" />
           {loading ? "Running..." : "Run Test"}
@@ -87,8 +87,8 @@ export const ApiSandbox = () => {
 
         {response && (
           <div className="space-y-2 pt-2">
-            <Label className="text-sm text-muted-foreground">Response</Label>
-            <pre className="bg-input-bg border border-border rounded-lg p-4 text-xs font-mono text-foreground overflow-x-auto">
+            <Label className="text-sm text-secondary-text">Response</Label>
+            <pre className="bg-muted border border-border rounded-lg p-4 text-xs font-mono text-foreground overflow-x-auto">
               {response}
             </pre>
           </div>

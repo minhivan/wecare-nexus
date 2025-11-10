@@ -116,19 +116,19 @@ export const ExperimentalFeatures = () => {
           <TooltipProvider key={feature.id}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-input-bg/50 border border-border/50 hover:border-accent/50 transition-colors">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-card border border-border hover:bg-hover-state transition-smooth cursor-pointer">
                   <div className="flex items-center gap-3 flex-1">
-                    <div className="text-accent">{feature.icon}</div>
+                    <div className="text-primary">{feature.icon}</div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm font-medium text-foreground truncate">
                           {feature.name}
                         </span>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-warning/10 text-amber border-0">
                           {feature.version}
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground truncate">
+                      <p className="text-xs text-secondary-text truncate">
                         {feature.description}
                       </p>
                     </div>
@@ -150,7 +150,7 @@ export const ExperimentalFeatures = () => {
   );
 
   return (
-    <Card className="p-6 bg-surface border-border">
+    <Card className="p-6 bg-card border-border">
       <h2 className="text-lg font-semibold text-foreground mb-4">
         Experimental Features
       </h2>

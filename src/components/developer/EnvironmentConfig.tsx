@@ -10,7 +10,7 @@ export const EnvironmentConfig = () => {
   const [mockData, setMockData] = useState(false);
 
   return (
-    <Card className="p-6 bg-surface border-border">
+    <Card className="p-6 bg-card border-border">
       <h2 className="text-lg font-semibold text-foreground mb-4">
         Environment Configuration
       </h2>
@@ -18,11 +18,11 @@ export const EnvironmentConfig = () => {
       <div className="space-y-5">
         <div className="grid sm:grid-cols-2 gap-5">
           <div className="space-y-2">
-            <Label htmlFor="environment" className="text-sm text-muted-foreground">
+            <Label htmlFor="environment" className="text-sm text-secondary-text">
               Environment
             </Label>
             <Select defaultValue="development">
-              <SelectTrigger id="environment" className="bg-input-bg border-border">
+              <SelectTrigger id="environment" className="bg-card border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -35,11 +35,11 @@ export const EnvironmentConfig = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="log-level" className="text-sm text-muted-foreground">
+            <Label htmlFor="log-level" className="text-sm text-secondary-text">
               Log Level
             </Label>
             <Select defaultValue="info">
-              <SelectTrigger id="log-level" className="bg-input-bg border-border">
+              <SelectTrigger id="log-level" className="bg-card border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -53,19 +53,19 @@ export const EnvironmentConfig = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="api-endpoint" className="text-sm text-muted-foreground">
+          <Label htmlFor="api-endpoint" className="text-sm text-secondary-text">
             API Endpoint
           </Label>
           <Input
             id="api-endpoint"
             placeholder="https://api.example.com"
             defaultValue="https://api.wecare.dev"
-            className="bg-input-bg border-border font-mono text-sm"
+            className="bg-card border-border font-mono text-sm h-11"
           />
         </div>
 
-        <div className="flex items-center justify-between py-2 px-3 rounded-md bg-input-bg/50">
-          <Label htmlFor="mock-data" className="text-sm cursor-pointer">
+        <div className="flex items-center justify-between py-3 px-4 rounded-lg bg-hover-state border border-border">
+          <Label htmlFor="mock-data" className="text-sm cursor-pointer text-foreground">
             Enable Real-time Mock Data
           </Label>
           <Switch
@@ -76,7 +76,7 @@ export const EnvironmentConfig = () => {
         </div>
 
         <div className="pt-4 flex justify-end">
-          <Button className="bg-emerald text-white hover:bg-emerald/90">
+          <Button className="bg-secondary text-white hover:bg-secondary/90">
             Apply Configuration
           </Button>
         </div>
