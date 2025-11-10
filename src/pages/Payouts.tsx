@@ -122,7 +122,7 @@ export default function Payouts() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <PayoutsHeader 
           view={view}
           onViewChange={setView}
@@ -131,13 +131,15 @@ export default function Payouts() {
 
         <PayoutsFilterBar filters={filters} onFiltersChange={setFilters} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-4 sm:gap-6">
           <PayoutTransactionStream
             payouts={filteredPayouts}
             onSelectPayout={setSelectedPayout}
           />
 
-          <PayoutInsightsPanel />
+          <div className="hidden lg:block">
+            <PayoutInsightsPanel />
+          </div>
         </div>
       </div>
 

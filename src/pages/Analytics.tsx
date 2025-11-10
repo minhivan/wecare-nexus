@@ -35,30 +35,30 @@ const Analytics = () => {
           onComparePeriodChange={setComparePeriod}
         />
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-          <TabsList className="border-b border-border bg-transparent h-12 w-full justify-start rounded-none px-4">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6 sm:mt-8">
+          <TabsList className="border-b border-[#1F2937] bg-transparent h-auto sm:h-12 w-full justify-start rounded-none px-2 sm:px-4 flex-wrap sm:flex-nowrap">
             <TabsTrigger 
               value="insight" 
-              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium transition-all data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
+              className="relative rounded-none border-b-2 border-transparent px-3 sm:px-4 pb-2 sm:pb-3 pt-2 text-sm font-medium transition-all duration-200 data-[state=active]:border-emerald data-[state=active]:text-[#E5E7EB] data-[state=inactive]:text-[#9CA3AF] hover:text-[#E5E7EB]"
             >
               Insight
             </TabsTrigger>
             <TabsTrigger 
               value="trend"
-              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium transition-all data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
+              className="relative rounded-none border-b-2 border-transparent px-3 sm:px-4 pb-2 sm:pb-3 pt-2 text-sm font-medium transition-all duration-200 data-[state=active]:border-emerald data-[state=active]:text-[#E5E7EB] data-[state=inactive]:text-[#9CA3AF] hover:text-[#E5E7EB]"
             >
               Trend
             </TabsTrigger>
             <TabsTrigger 
               value="conversion"
-              className="relative rounded-none border-b-2 border-transparent px-4 pb-3 pt-2 font-medium transition-all data-[state=active]:border-emerald data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground hover:text-foreground"
+              className="relative rounded-none border-b-2 border-transparent px-3 sm:px-4 pb-2 sm:pb-3 pt-2 text-sm font-medium transition-all duration-200 data-[state=active]:border-emerald data-[state=active]:text-[#E5E7EB] data-[state=inactive]:text-[#9CA3AF] hover:text-[#E5E7EB]"
             >
               Conversion
             </TabsTrigger>
           </TabsList>
 
-          <div className="p-6">
-            <TabsContent value="insight" className="mt-0 space-y-8">
+          <div className="px-4 sm:px-6 py-6 sm:py-8">
+            <TabsContent value="insight" className="mt-0 space-y-6 sm:space-y-8">
               <InsightTab 
                 dateRange={dateRange} 
                 filters={filters}
@@ -66,7 +66,7 @@ const Analytics = () => {
               />
             </TabsContent>
 
-            <TabsContent value="trend" className="mt-0 space-y-8">
+            <TabsContent value="trend" className="mt-0 space-y-6 sm:space-y-8">
               <TrendTab 
                 dateRange={dateRange} 
                 filters={filters}
@@ -74,7 +74,7 @@ const Analytics = () => {
               />
             </TabsContent>
 
-            <TabsContent value="conversion" className="mt-0 space-y-8">
+            <TabsContent value="conversion" className="mt-0 space-y-6 sm:space-y-8">
               <ConversionTab 
                 dateRange={dateRange} 
                 filters={filters}

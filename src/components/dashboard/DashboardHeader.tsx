@@ -123,22 +123,22 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
   };
 
   return (
-    <header data-tour="header" className="sticky top-0 z-30 border-b border-border/50 glass">
-      <div className="mx-auto max-w-[1360px] flex h-[72px] items-center justify-between px-6">
-        {/* Left Zone - Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm">
+    <header data-tour="header" className="sticky top-0 z-30 border-b border-[#1F2937] bg-[#111827]/95 backdrop-blur-lg">
+      <div className="mx-auto max-w-[1360px] flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6">
+        {/* Left Zone - Breadcrumb (hidden on mobile) */}
+        <nav className="hidden md:flex items-center gap-2 text-sm">
           {breadcrumbs.map((crumb, index) => (
             <div key={crumb.path} className="flex items-center gap-2">
               {index > 0 && (
-                <ChevronRight className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
+                <ChevronRight className="h-4 w-4 text-[#9CA3AF]" strokeWidth={1.5} />
               )}
               <Link
                 to={crumb.path}
                 className={cn(
-                  "transition-colors hover:text-foreground",
+                  "transition-colors hover:text-[#E5E7EB]",
                   index === breadcrumbs.length - 1
-                    ? "text-cyan font-medium"
-                    : "text-muted-foreground"
+                    ? "text-emerald font-medium"
+                    : "text-[#9CA3AF]"
                 )}
               >
                 {crumb.label}
@@ -147,30 +147,35 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
           ))}
         </nav>
 
-        {/* Center Zone - Command Palette */}
-        <div className="flex-1 max-w-md mx-8">
-          <div className="relative">
+        {/* Mobile: Just show current page name */}
+        <div className="md:hidden text-sm font-semibold text-[#E5E7EB]">
+          {breadcrumbs[breadcrumbs.length - 1]?.label}
+        </div>
+
+        {/* Center Zone - Command Palette (hidden on mobile) */}
+        <div className="hidden lg:flex flex-1 max-w-md mx-8">
+          <div className="relative w-full">
             <Search
-              className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+              className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9CA3AF]"
               strokeWidth={1.5}
             />
             <Input
               placeholder="Search or type a command..."
-              className="w-full pl-9 pr-12 bg-muted/30 border-border/50 focus:border-cyan/50 transition-smooth"
+              className="w-full pl-9 pr-12 bg-[#1A1F2B] border-[#1F2937] focus:border-emerald/50 transition-all duration-200 text-sm"
             />
-            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border/50 bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-[#1F2937] bg-[#1A1F2B] px-1.5 font-mono text-[10px] font-medium text-[#9CA3AF]">
               ⌘K
             </kbd>
           </div>
         </div>
 
         {/* Right Zone - Status & Utilities */}
-        <div className="flex items-center gap-2">
-          {/* Sync Status */}
+        <div className="flex items-center gap-1 sm:gap-2">
+          {/* Sync Status (hidden on mobile) */}
           <Badge
             variant="outline"
             className={cn(
-              "gap-1.5 px-2.5 py-1 text-xs font-medium transition-smooth",
+              "hidden sm:flex gap-1.5 px-2.5 py-1 text-xs font-medium transition-all duration-200",
               getSyncColor()
             )}
           >
@@ -181,16 +186,16 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
           {/* Notifications */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" strokeWidth={1.5} />
+              <Button variant="ghost" size="icon" className="relative h-9 w-9 sm:h-10 sm:w-10">
+                <Bell className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-fire-orange text-white text-[10px] font-semibold flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 rounded-full bg-fire-orange text-white text-[9px] sm:text-[10px] font-semibold flex items-center justify-center">
                     {unreadCount}
                   </span>
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="w-full sm:w-[400px]">
               <SheetHeader>
                 <SheetTitle>Notifications</SheetTitle>
                 <SheetDescription>Stay updated with your latest activities</SheetDescription>
@@ -200,33 +205,34 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
                   <div
                     key={notification.id}
                     className={cn(
-                      "p-4 rounded-lg border transition-smooth hover:bg-muted/50 cursor-pointer",
-                      notification.unread ? "bg-cyan/5 border-cyan/20" : "border-border"
+                      "p-4 rounded-lg border transition-all duration-200 hover:bg-[#1A1F2B] cursor-pointer",
+                      notification.unread ? "bg-emerald/5 border-emerald/20" : "border-[#1F2937]"
                     )}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <p className="font-medium text-sm">{notification.title}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="font-medium text-sm text-[#E5E7EB]">{notification.title}</p>
+                        <p className="text-xs text-[#9CA3AF] mt-1">
                           {notification.description}
                         </p>
                       </div>
                       {notification.unread && (
-                        <div className="h-2 w-2 rounded-full bg-cyan ml-2 flex-shrink-0 mt-1" />
+                        <div className="h-2 w-2 rounded-full bg-emerald ml-2 flex-shrink-0 mt-1" />
                       )}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2">{notification.time}</p>
+                    <p className="text-xs text-[#9CA3AF] mt-2">{notification.time}</p>
                   </div>
                 ))}
               </div>
             </SheetContent>
           </Sheet>
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle (hidden on mobile) */}
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="hidden sm:flex h-10 w-10"
           >
             {theme === "light" ? (
               <Moon className="h-5 w-5" strokeWidth={1.5} />
@@ -235,10 +241,10 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
             )}
           </Button>
 
-          {/* Help */}
+          {/* Help (hidden on mobile) */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hidden sm:flex h-10 w-10">
                 <HelpCircle className="h-5 w-5" strokeWidth={1.5} />
               </Button>
             </DropdownMenuTrigger>
@@ -255,16 +261,16 @@ export const DashboardHeader = ({ sidebarCollapsed }: DashboardHeaderProps) => {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet to-pink text-white text-xs font-semibold">
+              <Button variant="ghost" size="icon" className="rounded-full h-9 w-9 sm:h-10 sm:w-10">
+                <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet to-pink text-white text-[10px] sm:text-xs font-semibold">
                   AD
                 </div>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               <div className="px-2 py-1.5">
-                <p className="text-sm font-medium">Admin User</p>
-                <p className="text-xs text-muted-foreground">admin@wecare.org</p>
+                <p className="text-sm font-medium text-[#E5E7EB]">Admin User</p>
+                <p className="text-xs text-[#9CA3AF]">admin@wecare.org</p>
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem>

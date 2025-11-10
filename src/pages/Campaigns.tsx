@@ -136,14 +136,14 @@ const Campaigns = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6 animate-fade-in">
+      <div className="space-y-4 sm:space-y-6 animate-fade-in">
         <CampaignsHeader />
         
         <FilterBar filters={filters} onFiltersChange={setFilters} />
         
         <MetricsSnapshot campaigns={mockCampaigns} />
         
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {activeCampaigns.length > 0 && (
             <CampaignGrid
               title="Active Campaigns"
