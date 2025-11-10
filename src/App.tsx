@@ -7,6 +7,7 @@ import { OnboardingProvider } from "@/components/onboarding/OnboardingProvider";
 import Index from "./pages/Index";
 import Campaigns from "./pages/Campaigns";
 import CreateCampaign from "./pages/CreateCampaign";
+import DeveloperSettings from "./pages/DeveloperSettings";
 import Donations from "./pages/Donations";
 import Payouts from "./pages/Payouts";
 import Community from "./pages/Community";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/community" element={<Community />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/developer" element={<DeveloperSettings />} />
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/forgot-password" element={<ForgotPassword />} />

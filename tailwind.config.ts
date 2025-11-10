@@ -62,6 +62,7 @@ export default {
         },
         emerald: "hsl(var(--emerald))",
         cyan: "hsl(var(--cyan))",
+        warning: "hsl(var(--warning))",
         amber: "hsl(var(--amber))",
         "fire-orange": "hsl(var(--fire-orange))",
         violet: "hsl(var(--violet))",

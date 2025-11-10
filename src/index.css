@@ -68,6 +68,7 @@ All colors MUST be HSL.
     /* Dashboard specific tokens - Bright futuristic palette */
     --emerald: 160 84% 45%;
     --cyan: 189 94% 48%;
+    --warning: 43 96% 56%;
     --amber: 43 96% 60%;
     --fire-orange: 14 100% 62%;
     --violet: 262 83% 58%;
