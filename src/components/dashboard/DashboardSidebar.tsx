@@ -129,7 +129,6 @@ export const DashboardSidebar = ({ collapsed, onCollapsedChange }: DashboardSide
       className={cn(
         "fixed left-0 top-0 z-40 h-screen transition-all duration-200 flex flex-col",
         "bg-gradient-to-b from-[#0C111A] to-[#101722] text-[#E5E7EB]",
-        "hidden md:flex", // Hide on mobile
         collapsed ? "w-20" : "w-[260px]"
       )}
       style={{

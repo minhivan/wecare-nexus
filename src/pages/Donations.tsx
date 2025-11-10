@@ -112,19 +112,17 @@ const Donations = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-4 sm:space-y-6">
+      <div className="space-y-6">
         <DonationsHeader view={view} onViewChange={setView} />
         
         <DonationsFilterBar filters={filters} onFiltersChange={setFilters} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6">
           <TransactionStream
             donations={mockDonations}
             onSelectDonation={setSelectedDonation}
           />
-          <div className="hidden lg:block">
-            <InsightsPanel donations={mockDonations} />
-          </div>
+          <InsightsPanel donations={mockDonations} />
         </div>
       </div>
 
