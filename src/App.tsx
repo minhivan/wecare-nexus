@@ -13,6 +13,7 @@ import Payouts from "./pages/Payouts";
 import Community from "./pages/Community";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import Onboarding from "./pages/Onboarding";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/developer" element={<DeveloperSettings />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/forgot-password" element={<ForgotPassword />} />
