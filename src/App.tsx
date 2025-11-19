@@ -17,6 +17,7 @@ import Onboarding from "./pages/Onboarding";
 import AdminVerification from "./pages/AdminVerification";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UserList from "./pages/admin/UserList";
+import KYCVerificationList from "./pages/admin/KYCVerificationList";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -45,7 +46,7 @@ const App = () => (
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<UserList />} />
-          <Route path="/admin/verification" element={<AdminVerification />} />
+          <Route path="/admin/verification" element={<KYCVerificationList />} />
           <Route path="/admin/verification/:userId" element={<AdminVerification />} />
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
