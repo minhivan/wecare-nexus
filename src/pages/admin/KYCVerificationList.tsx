@@ -239,67 +239,84 @@ const KYCVerificationList = () => {
           {mockSubmissions.map((submission) => (
             <div
               key={submission.id}
-              className="group bg-white rounded-[10px] border border-[#E5E7EB] p-5 hover:bg-[#F3F4F6] hover:border-l-4 hover:border-l-[#2563EB] transition-all cursor-pointer"
+              className="group bg-white rounded-[12px] border border-[#E5E7EB] hover:shadow-sm hover:border-[#2563EB] transition-all cursor-pointer overflow-hidden"
               onClick={() => handleReview(submission)}
             >
-              <div className="flex items-center justify-between">
-                {/* Left: User Info */}
-                <div className="flex items-center gap-4 flex-1">
-                  <Avatar className="h-12 w-12">
+              <div className="grid grid-cols-[auto,1fr,auto] gap-6 p-6 items-center">
+                {/* Column 1: User Identity */}
+                <div className="flex items-center gap-4 min-w-[280px]">
+                  <Avatar className="h-14 w-14 ring-2 ring-[#F3F4F6]">
                     <AvatarImage src={submission.avatar} />
-                    <AvatarFallback>{submission.name[0]}</AvatarFallback>
+                    <AvatarFallback className="text-[16px] font-semibold">{submission.name[0]}</AvatarFallback>
                   </Avatar>
-                  <div>
-                    <h3 className="text-[16px] font-semibold text-[#111827] mb-0.5">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-[15px] font-semibold text-[#111827] mb-1 truncate">
                       {submission.name}
                     </h3>
-                    <p className="text-[14px] text-[#6B7280]">{submission.email}</p>
-                    <p className="text-[12px] text-[#9CA3AF] italic">{submission.id}</p>
+                    <p className="text-[13px] text-[#6B7280] truncate mb-1">{submission.email}</p>
+                    <p className="text-[11px] text-[#9CA3AF] font-mono">{submission.id}</p>
                   </div>
                 </div>
 
-                {/* Middle: Submission Details */}
-                <div className="flex items-center gap-8 flex-1">
-                  <div>
-                    <Badge variant="outline" className="text-[12px] border-[#E5E7EB]">
+                {/* Column 2: Submission Info (Grid Layout) */}
+                <div className="grid grid-cols-3 gap-6">
+                  {/* Type & Country */}
+                  <div className="space-y-2">
+                    <p className="text-[11px] uppercase tracking-wider text-[#9CA3AF] font-medium">Type</p>
+                    <Badge variant="outline" className="text-[12px] border-[#E5E7EB] font-medium">
                       {submission.submissionType === "organization" ? "Organization" : "Individual"}
                     </Badge>
+                    <p className="text-[13px] text-[#6B7280] mt-1">{submission.country}</p>
                   </div>
-                  <div>
-                    <p className="text-[14px] text-[#6B7280] mb-1">{submission.country}</p>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <p className="text-[12px] text-[#6B7280] mb-1">Documents:</p>
-                    <div className="flex gap-1.5">
+
+                  {/* Documents */}
+                  <div className="space-y-2">
+                    <p className="text-[11px] uppercase tracking-wider text-[#9CA3AF] font-medium">Documents</p>
+                    <div className="flex flex-wrap gap-1.5">
                       {submission.documents.id && (
-                        <span className="w-2 h-2 rounded-full bg-[#10B981]" title="ID Document" />
+                        <div className="flex items-center gap-1 bg-[#ECFDF5] px-2 py-1 rounded-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                          <span className="text-[11px] text-[#059669] font-medium">ID</span>
+                        </div>
                       )}
                       {submission.documents.businessLicense && (
-                        <span className="w-2 h-2 rounded-full bg-[#10B981]" title="Business License" />
+                        <div className="flex items-center gap-1 bg-[#ECFDF5] px-2 py-1 rounded-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                          <span className="text-[11px] text-[#059669] font-medium">License</span>
+                        </div>
                       )}
                       {submission.documents.proofOfAddress && (
-                        <span className="w-2 h-2 rounded-full bg-[#10B981]" title="Proof of Address" />
+                        <div className="flex items-center gap-1 bg-[#ECFDF5] px-2 py-1 rounded-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                          <span className="text-[11px] text-[#059669] font-medium">Address</span>
+                        </div>
                       )}
                       {submission.documents.selfie && (
-                        <span className="w-2 h-2 rounded-full bg-[#10B981]" title="Selfie Verification" />
+                        <div className="flex items-center gap-1 bg-[#ECFDF5] px-2 py-1 rounded-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                          <span className="text-[11px] text-[#059669] font-medium">Selfie</span>
+                        </div>
                       )}
                     </div>
                   </div>
-                  <div>
-                    <p className="text-[13px] text-[#9CA3AF]">
-                      Submitted {submission.submittedAt}
+
+                  {/* Time */}
+                  <div className="space-y-2">
+                    <p className="text-[11px] uppercase tracking-wider text-[#9CA3AF] font-medium">Submitted</p>
+                    <p className="text-[13px] text-[#6B7280] font-medium">
+                      {submission.submittedAt}
                     </p>
                   </div>
                 </div>
 
-                {/* Right: Status & Action */}
+                {/* Column 3: Status & Action */}
                 <div className="flex items-center gap-3">
-                  <Badge className={`${statusColors[submission.status]} border text-[13px] font-medium`}>
+                  <Badge className={`${statusColors[submission.status]} border-0 text-[12px] font-semibold px-3 py-1`}>
                     {statusLabels[submission.status]}
                   </Badge>
                   <Button
                     size="sm"
-                    className="bg-[#2563EB] hover:bg-[#1d4ed8] text-white h-8 px-4 text-[14px]"
+                    className="bg-[#2563EB] hover:bg-[#1d4ed8] text-white h-9 px-5 text-[13px] font-medium shadow-sm"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleReview(submission);
