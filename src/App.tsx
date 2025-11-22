@@ -20,6 +20,7 @@ import UserList from "./pages/admin/UserList";
 import KYCVerificationList from "./pages/admin/KYCVerificationList";
 import PendingCampaigns from "./pages/admin/PendingCampaigns";
 import ActiveCampaigns from "./pages/admin/ActiveCampaigns";
+import DonationsTransactions from "./pages/admin/DonationsTransactions";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/admin/verification/:userId" element={<AdminVerification />} />
           <Route path="/admin/campaigns/pending" element={<PendingCampaigns />} />
           <Route path="/admin/campaigns/active" element={<ActiveCampaigns />} />
+          <Route path="/admin/donations/transactions" element={<DonationsTransactions />} />
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/forgot-password" element={<ForgotPassword />} />
