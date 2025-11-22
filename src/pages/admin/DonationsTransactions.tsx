@@ -187,6 +187,78 @@ export default function DonationsTransactions() {
           </div>
         </div>
 
+        {/* Metrics Overview Widgets */}
+        <div className="grid grid-cols-5 gap-4">
+          <div className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-[#6B7280]">Today's Volume</p>
+                <p className="text-2xl font-semibold text-[#111827] mt-1">
+                  875,000 VND
+                </p>
+                <p className="text-xs text-[#10B981] mt-1">+12.5% vs yesterday</p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-[#2563EB]/10 flex items-center justify-center">
+                <CreditCard className="h-6 w-6 text-[#2563EB]" />
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-[#6B7280]">Transactions</p>
+                <p className="text-2xl font-semibold text-[#111827] mt-1">342</p>
+                <p className="text-xs text-[#10B981] mt-1">+8.2% vs yesterday</p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-[#10B981]/10 flex items-center justify-center">
+                <Receipt className="h-6 w-6 text-[#10B981]" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-[#6B7280]">Avg. Donation</p>
+                <p className="text-2xl font-semibold text-[#111827] mt-1">
+                  125,000 VND
+                </p>
+                <p className="text-xs text-[#6B7280] mt-1">↔ stable</p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-[#F59E0B]/10 flex items-center justify-center">
+                <Wallet className="h-6 w-6 text-[#F59E0B]" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-[#6B7280]">Failed</p>
+                <p className="text-2xl font-semibold text-[#111827] mt-1">3</p>
+                <p className="text-xs text-[#EF4444] mt-1">Needs attention</p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-[#EF4444]/10 flex items-center justify-center">
+                <AlertTriangle className="h-6 w-6 text-[#EF4444]" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-[#6B7280]">Flagged</p>
+                <p className="text-2xl font-semibold text-[#111827] mt-1">1</p>
+                <p className="text-xs text-[#F59E0B] mt-1">Review required</p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-[#F59E0B]/10 flex items-center justify-center">
+                <Flag className="h-6 w-6 text-[#F59E0B]" />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Filter Bar */}
         <div className="flex items-center gap-3 pb-4 border-b border-[#E5E7EB]">
           <div className="flex items-center gap-2">
@@ -242,17 +314,6 @@ export default function DonationsTransactions() {
                 <DropdownMenuItem>Registered</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
-                  Country
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Vietnam</DropdownMenuItem>
-                <DropdownMenuItem>United States</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
           <div className="h-6 w-px bg-[#E5E7EB]" />
           <DropdownMenu>
@@ -271,19 +332,15 @@ export default function DonationsTransactions() {
           </DropdownMenu>
         </div>
 
-        {/* Transactions Table */}
+        {/* Transactions Table - Compact & Intelligent */}
         <div className="bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="bg-[#F9FAFB] hover:bg-[#F9FAFB]">
-                <TableHead className="text-[#6B7280] font-medium">Transaction</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Donor</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Campaign</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Payment</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Amount</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Status</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Risk</TableHead>
-                <TableHead className="text-[#6B7280] font-medium">Actions</TableHead>
+                <TableHead className="text-[#6B7280] font-medium w-[35%]">Transaction & Donor</TableHead>
+                <TableHead className="text-[#6B7280] font-medium w-[30%]">Campaign & Payment</TableHead>
+                <TableHead className="text-[#6B7280] font-medium w-[15%]">Amount</TableHead>
+                <TableHead className="text-[#6B7280] font-medium w-[20%]">Status & Risk</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -293,92 +350,135 @@ export default function DonationsTransactions() {
                   className="hover:bg-[#F3F4F6] cursor-pointer transition-colors group relative"
                   onClick={() => handleViewTransaction(transaction)}
                 >
-                  <TableCell>
+                  <TableCell className="py-4">
                     <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div>
-                      <div className="font-medium text-[#111827]">{transaction.id}</div>
-                      <div className="text-sm text-[#6B7280]">{transaction.timestamp}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div>
-                      <div className="font-medium text-[#111827]">{transaction.donor.name}</div>
-                      <div className="text-sm text-[#6B7280]">{transaction.donor.email}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div>
-                      <div className="font-medium text-[#111827]">{transaction.campaign.title}</div>
-                      <Badge variant="outline" className="mt-1 text-xs">
-                        {transaction.campaign.category}
-                      </Badge>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      {paymentMethodIcons[transaction.paymentMethod]}
-                      <span className="text-sm text-[#6B7280] capitalize">
-                        {transaction.paymentMethod}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="font-semibold text-[#111827]">
-                      {transaction.amount.toLocaleString()} {transaction.currency}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant="outline"
-                      className={statusConfig[transaction.status].className}
-                    >
-                      {statusConfig[transaction.status].label}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-1">
-                      {transaction.riskSignals.map((signal) => (
-                        <div key={signal} title={signal}>
-                          {riskSignalIcons[signal as keyof typeof riskSignalIcons]}
+                    <div className="space-y-2">
+                      {/* Transaction Info */}
+                      <div className="flex items-center gap-2">
+                        <div className="font-mono text-sm font-medium text-[#2563EB]">
+                          {transaction.id}
                         </div>
-                      ))}
+                        <div className="text-xs text-[#6B7280]">
+                          {transaction.timestamp}
+                        </div>
+                      </div>
+                      {/* Donor Info */}
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-[#2563EB] flex items-center justify-center text-white text-xs font-medium">
+                          {transaction.donor.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-medium text-[#111827] text-sm">
+                            {transaction.donor.name}
+                          </div>
+                          <div className="text-xs text-[#6B7280]">
+                            {transaction.donor.email}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleViewTransaction(transaction);
-                        }}
+
+                  <TableCell className="py-4">
+                    <div className="space-y-2">
+                      {/* Campaign Info */}
+                      <div>
+                        <div className="font-medium text-[#111827] text-sm line-clamp-1">
+                          {transaction.campaign.title}
+                        </div>
+                        <Badge variant="outline" className="mt-1 text-xs">
+                          {transaction.campaign.category}
+                        </Badge>
+                      </div>
+                      {/* Payment Method */}
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-[#F3F4F6]">
+                          {paymentMethodIcons[transaction.paymentMethod]}
+                          <span className="text-xs text-[#6B7280] capitalize font-medium">
+                            {transaction.paymentMethod}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </TableCell>
+
+                  <TableCell className="py-4">
+                    <div className="space-y-1">
+                      <div className="font-semibold text-[#111827] text-base">
+                        {transaction.amount.toLocaleString()}
+                      </div>
+                      <div className="text-xs text-[#6B7280] font-medium">
+                        {transaction.currency}
+                      </div>
+                    </div>
+                  </TableCell>
+
+                  <TableCell className="py-4">
+                    <div className="space-y-2">
+                      {/* Status Badge */}
+                      <Badge
+                        variant="outline"
+                        className={statusConfig[transaction.status].className}
                       >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" onClick={(e) => e.stopPropagation()}>
-                        <RotateCcw className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" onClick={(e) => e.stopPropagation()}>
-                        <Flag className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" onClick={(e) => e.stopPropagation()}>
-                        <Receipt className="h-4 w-4" />
-                      </Button>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                          <Button variant="ghost" size="sm">
-                            <MoreVertical className="h-4 w-4" />
+                        {statusConfig[transaction.status].label}
+                      </Badge>
+                      {/* Risk Signals & Quick Actions */}
+                      <div className="flex items-center gap-2">
+                        {transaction.riskSignals.length > 0 && (
+                          <div className="flex items-center gap-1">
+                            {transaction.riskSignals.map((signal) => (
+                              <div key={signal} title={signal}>
+                                {riskSignalIcons[signal as keyof typeof riskSignalIcons]}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        {/* Quick Actions - appear on hover */}
+                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity ml-auto">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleViewTransaction(transaction);
+                            }}
+                            title="View Details"
+                          >
+                            <Eye className="h-3.5 w-3.5" />
                           </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View Details</DropdownMenuItem>
-                          <DropdownMenuItem>Refund</DropdownMenuItem>
-                          <DropdownMenuItem>Flag Transaction</DropdownMenuItem>
-                          <DropdownMenuItem>Download Receipt</DropdownMenuItem>
-                          <DropdownMenuItem>Open Donor Profile</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="h-7 w-7 p-0"
+                            onClick={(e) => e.stopPropagation()}
+                            title="Refund"
+                          >
+                            <RotateCcw className="h-3.5 w-3.5" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="h-7 w-7 p-0"
+                            onClick={(e) => e.stopPropagation()}
+                            title="Flag"
+                          >
+                            <Flag className="h-3.5 w-3.5" />
+                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+                              <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+                                <MoreVertical className="h-3.5 w-3.5" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem>Download Receipt</DropdownMenuItem>
+                              <DropdownMenuItem>Open Donor Profile</DropdownMenuItem>
+                              <DropdownMenuItem>Open Campaign</DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                      </div>
                     </div>
                   </TableCell>
                 </TableRow>
